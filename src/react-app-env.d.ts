@@ -1,11 +1,12 @@
 /// <reference types="react-scripts" />
 
-declare module '*.module.css';
-{
-  const s: { readonly [key: string]: string };
-  export = s;
+declare module '*module.css' {
+  interface IClassNames {
+    [className: string]: string;
+  }
+  const classNames: IClassNames;
+  export = classNames;
 }
-
 declare namespace NodeJS {
   interface ProcessEnv {
     NODE_ENV: 'development' | 'production' | 'test';

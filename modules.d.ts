@@ -38,9 +38,3 @@ declare module '*.mp4' {
   const value: string;
   export = value;
 }
-
-declare module '*.module.css';
-{
-  const s: { readonly [key: string]: string };
-  export = s;
-}
