@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout, WelcomePage } from 'components';
 
 const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename='/project-management-app'>
     <Routes>
       <Route element={<Layout />}>
         <Route path='/' element={<WelcomePage />} />
