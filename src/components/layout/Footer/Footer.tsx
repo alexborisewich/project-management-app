@@ -4,9 +4,9 @@ import s from './Footer.module.css';
 import { FooterProps } from './Footer.types';
 
 const Footer = ({ dataTestId }: FooterProps) => (
-  <div className={s.container} data-testid={dataTestId}>
+  <footer className={s.container} data-testid={dataTestId}>
     Footer
-  </div>
+  </footer>
 );
 
 export default Footer;

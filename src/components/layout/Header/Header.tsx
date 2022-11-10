@@ -4,9 +4,9 @@ import s from './Header.module.css';
 import { HeaderProps } from './Header.types';
 
 const Header = ({ dataTestId }: HeaderProps) => (
-  <div className={s.container} data-testid={dataTestId}>
+  <header className={s.container} data-testid={dataTestId}>
     Header
-  </div>
+  </header>
 );
 
 export default Header;
