@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { Layout } from 'components';
+import { Layout, WelcomePage } from 'components';
 
 const App = () => (
   <BrowserRouter>
     <Routes>
-      <Route element={<Layout />}></Route>
+      <Route element={<Layout />}>
+        <Route path='/' element={<WelcomePage />} />
+      </Route>
     </Routes>
   </BrowserRouter>
 );
