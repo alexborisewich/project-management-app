@@ -1,9 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { Layout } from 'components';
 
 const App = () => (
   <BrowserRouter>
-    <Routes></Routes>
+    <Routes>
+      <Route element={<Layout />}></Route>
+    </Routes>
   </BrowserRouter>
 );
 
