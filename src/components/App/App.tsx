@@ -12,20 +12,21 @@ import {
   WelcomePage,
   ErrorPage,
 } from 'components';
+import { PATHS } from 'data';
 
 const App = () => (
-  <BrowserRouter basename='/project-management-app'>
+  <BrowserRouter basename={PATHS.base}>
     <Routes>
       <Route element={<Layout />}>
-        <Route path='/' element={<WelcomePage />} />
-        <Route path='/boards' element={<MainPage />} />
-        <Route path='/boards/:id' element={<Board />} />
-        <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/signin' element={<SignInPage />} />
-        <Route path='/profile' element={<ProfilePage />} />
-        <Route path='/error' element={<ErrorPage />} />
+        <Route path={PATHS.welcome} element={<WelcomePage />} />
+        <Route path={PATHS.main} element={<MainPage />} />
+        <Route path={PATHS.board} element={<Board />} />
+        <Route path={PATHS.signIn} element={<SignUpPage />} />
+        <Route path={PATHS.signUp} element={<SignInPage />} />
+        <Route path={PATHS.profile} element={<ProfilePage />} />
+        <Route path={PATHS.error} element={<ErrorPage />} />
       </Route>
-      <Route path='*' element={<NotFoundPage />} />
+      <Route path={PATHS.notFound} element={<NotFoundPage />} />
     </Routes>
   </BrowserRouter>
 );
