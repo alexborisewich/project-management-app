@@ -1,10 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import s from './Main.module.css';
-import { MainProps } from './Main.types';
+import { s, types } from './';
 
-const Main = ({ dataTestId }: MainProps) => (
+const Main = ({ dataTestId }: types.MainProps) => (
   <main className={s.container} data-testid={dataTestId}>
     <Outlet />
   </main>

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './Footer.module.css';
-import { FooterProps } from './Footer.types';
+import { s, types } from './';
 
-const Footer = ({ dataTestId }: FooterProps) => (
+const Footer = ({ dataTestId }: types.FooterProps) => (
   <footer className={s.container} data-testid={dataTestId}>
     Footer
   </footer>

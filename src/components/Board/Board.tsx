@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './Board.module.css';
-import { BoardProps } from './Board.types';
+import { s, types } from './';
 
-const Board = ({ dataTestId }: BoardProps) => (
+const Board = ({ dataTestId }: types.BoardProps) => (
   <div className={s.container} data-testid={dataTestId}>
     Board
   </div>

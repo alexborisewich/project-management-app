@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { LayoutProps } from './Layout.types';
+import { types } from './';
 
 import { Footer, Header, Main } from 'components';
 
-const Layout: React.FC<LayoutProps> = () => (
+const Layout: React.FC<types.LayoutProps> = () => (
   <>
     <Header />
     <Main />

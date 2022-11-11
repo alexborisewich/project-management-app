@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './SignUpPage.module.css';
-import { SignUpPageProps } from './SignUpPage.types';
+import { s, types } from './';
 
-const SignUpPage = ({ dataTestId }: SignUpPageProps) => (
+const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => (
   <section className={s.container} data-testid={dataTestId}>
     SignUp
   </section>

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './MainPage.module.css';
-import { MainPageProps } from './MainPage.types';
+import { s, types } from './';
 
-const MainPage = ({ dataTestId }: MainPageProps) => (
+const MainPage = ({ dataTestId }: types.MainPageProps) => (
   <section className={s.container} data-testid={dataTestId}>
     MainPage
   </section>

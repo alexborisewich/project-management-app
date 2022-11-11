@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './ProfilePage.module.css';
-import { ProfilePageProps } from './ProfilePage.types';
+import { s, types } from './';
 
-const ProfilePage = ({ dataTestId }: ProfilePageProps) => (
+const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => (
   <section className={s.container} data-testid={dataTestId}>
     Profile
   </section>

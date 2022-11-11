@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './NotFoundPage.module.css';
-import { NotFoundPageProps } from './NotFoundPage.types';
+import { s, types } from './';
 
-const NotFoundPage = ({ dataTestId }: NotFoundPageProps) => (
+const NotFoundPage = ({ dataTestId }: types.NotFoundPageProps) => (
   <section className={s.container} data-testid={dataTestId}>
     NotFound
   </section>

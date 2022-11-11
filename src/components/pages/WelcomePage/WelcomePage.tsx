@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './WelcomePage.module.css';
-import { WelcomePageProps } from './WelcomePage.types';
+import { s, types } from './';
 
-const WelcomePage = ({ dataTestId }: WelcomePageProps) => (
+const WelcomePage = ({ dataTestId }: types.WelcomePageProps) => (
   <section className={s.container} data-testid={dataTestId}>
     WelcomePage
   </section>

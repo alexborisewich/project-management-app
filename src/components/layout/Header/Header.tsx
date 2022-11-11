@@ -1,9 +1,8 @@
 import React from 'react';
 
-import s from './Header.module.css';
-import { HeaderProps } from './Header.types';
+import { s, types } from './';
 
-const Header = ({ dataTestId }: HeaderProps) => (
+const Header = ({ dataTestId }: types.HeaderProps) => (
   <header className={s.container} data-testid={dataTestId}>
     Header
   </header>
