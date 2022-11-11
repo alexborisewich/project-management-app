@@ -4,6 +4,7 @@ import Footer from './layout/Footer';
 import Header from './layout/Header';
 import Layout from './layout/Layout';
 import Main from './layout/Main';
+import ErrorPage from './pages/ErrorPage';
 import MainPage from './pages/MainPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProfilePage from './pages/ProfilePage';
@@ -24,4 +25,5 @@ export {
   ProfilePage,
   NotFoundPage,
   Board,
+  ErrorPage,
 };
