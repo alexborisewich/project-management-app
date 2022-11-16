@@ -84,6 +84,12 @@ export interface IFile {
   path: string;
 }
 
+export interface IFileUpload {
+  boardId: string;
+  taskId: string;
+  file: File;
+}
+
 // points
 export interface INewPoint {
   title: string;
