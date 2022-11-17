@@ -1,3 +1,5 @@
+import { ISignedInUser } from './app';
+
 export interface IAppState {
-  token: string | null;
+  user: ISignedInUser | null;
 }
