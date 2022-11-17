@@ -3,6 +3,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import React from 'react';
 
 import { s, types } from './';
@@ -56,33 +57,42 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const Header = ({ dataTestId }: types.HeaderProps) => (
-  <header className={s.container} data-testid={dataTestId}>
-    <span>Logo</span>
-    <div className={s.wrapper__btns}>
-      <Button
-        variant='contained'
-        startIcon={<LoginIcon />}
-        sx={{ borderRadius: '10px', backgroundColor: '#5352ED', height: '40px', textTransform: 'none' }}
-      >
-        Sign In
-      </Button>
-      <Button
-        variant='outlined'
-        startIcon={<AppRegistrationIcon />}
-        sx={{
-          borderRadius: '10px',
-          color: '#0D0D0D',
-          border: '1px solid #5352ED',
-          height: '40px',
-          textTransform: 'none',
-        }}
-      >
-        Sign Up
-      </Button>
-      <MaterialUISwitch defaultChecked />
-    </div>
-  </header>
-);
+const Header = ({ dataTestId }: types.HeaderProps) => {
+  const { scrollYProgress } = useScroll();
+  const boxShadow = useTransform(
+    scrollYProgress,
+    [0, 100],
+    ['3px 3px 3px rgba(83, 82, 237, 0)', '3px 3px 3px rgba(83, 82, 237, 100)']
+  );
+
+  return (
+    <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
+      <span>Logo</span>
+      <motion.div className={s.wrapper__btns}>
+        <Button
+          variant='contained'
+          startIcon={<LoginIcon />}
+          sx={{ borderRadius: '10px', backgroundColor: '#5352ED', height: '40px', textTransform: 'none' }}
+        >
+          Sign In
+        </Button>
+        <Button
+          variant='outlined'
+          startIcon={<AppRegistrationIcon />}
+          sx={{
+            borderRadius: '10px',
+            color: '#0D0D0D',
+            border: '1px solid #5352ED',
+            height: '40px',
+            textTransform: 'none',
+          }}
+        >
+          Sign Up
+        </Button>
+        <MaterialUISwitch defaultChecked />
+      </motion.div>
+    </motion.header>
+  );
+};
 
 export default Header;
