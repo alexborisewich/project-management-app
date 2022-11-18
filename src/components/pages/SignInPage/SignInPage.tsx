@@ -1,4 +1,5 @@
-import { Button, TextField } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { TextField } from '@mui/material';
 import React from 'react';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -12,10 +13,16 @@ import { IUserSignIn } from 'interfaces';
 
 const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
   const { control, handleSubmit } = useForm<types.Inputs>();
-  const [signIn] = useSignInMutation();
+  const [signIn, data] = useSignInMutation();
   const { errors } = useFormState({ control });
-  const onSubmit: SubmitHandler<IUserSignIn> = async (data) => {
-    await signIn(data);
+  const onSubmit: SubmitHandler<IUserSignIn> = async (value) => {
+    try {
+      await signIn(value);
+      // console.log('payload -->', payload);
+      // console.log('data -->>', data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -59,9 +66,9 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
         <Link to='/registration' className={s.form__link}>
           Don`t have an account? Sign up
         </Link>
-        <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
+        <LoadingButton loading={data.isLoading} variant='contained' type='submit' sx={{ marginTop: '30px' }}>
           Submit
-        </Button>
+        </LoadingButton>
       </form>
     </section>
   );

@@ -1,4 +1,5 @@
-import { Button, TextField } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { TextField } from '@mui/material';
 import React from 'react';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -11,10 +12,14 @@ import { useSignUpMutation } from 'hooks';
 
 const SignInPage = ({ dataTestId }: types.SignUpPageProps) => {
   const { control, handleSubmit } = useForm<types.Inputs>();
-  const [signIn] = useSignUpMutation();
+  const [signUp, data] = useSignUpMutation();
   const { errors } = useFormState({ control });
   const onSubmit: SubmitHandler<types.Inputs> = async (data) => {
-    await signIn(data);
+    try {
+      await signUp(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -75,9 +80,9 @@ const SignInPage = ({ dataTestId }: types.SignUpPageProps) => {
         <Link to='/login' className={s.form__link}>
           You already have an account? Sign in
         </Link>
-        <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
+        <LoadingButton loading={data.isLoading} variant='contained' type='submit' sx={{ marginTop: '30px' }}>
           Submit
-        </Button>
+        </LoadingButton>
       </form>
     </section>
   );
