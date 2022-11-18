@@ -9,3 +9,8 @@ export enum PATHS {
   error = '/error',
   notFound = '*',
 }
+
+export enum PRIVACY_REASONS {
+  userOnly = 'userOnly',
+  notForUser = 'notForUser',
+}
