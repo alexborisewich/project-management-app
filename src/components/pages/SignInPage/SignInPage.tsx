@@ -1,26 +1,32 @@
 import { Button, TextField } from '@mui/material';
 import React from 'react';
-import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
+import { useForm, Controller, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { s, types } from './';
 
-import { loginValidation, passwordValidation } from './validation';
-
-import { useSignInMutation } from 'hooks';
+import { useAppDispatch, useSignInMutation } from 'hooks';
 import { IUserSignIn } from 'interfaces';
+import { setUser } from 'store';
+import { loginValidation, onPromiseHandler, passwordValidation, saveUser } from 'utils';
 
 const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
-  const { control, handleSubmit } = useForm<types.Inputs>();
+  const dispatch = useAppDispatch();
+  const { control, handleSubmit } = useForm<IUserSignIn>();
   const [signIn] = useSignInMutation();
   const { errors } = useFormState({ control });
-  const onSubmit: SubmitHandler<IUserSignIn> = async (data) => {
-    await signIn(data);
-  };
+
+  const onSubmit = handleSubmit(async (signInData) => {
+    const userData = await signIn(signInData).unwrap();
+    if (userData) {
+      dispatch(setUser(userData));
+      saveUser(userData);
+    }
+  });
 
   return (
     <section className={s.container} data-testid={dataTestId}>
-      <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)} className={s.form}>
+      <form onSubmit={onPromiseHandler(onSubmit)} className={s.form}>
         <h3 className={s.form__title}>Sign In</h3>
         <Controller
           name='login'
