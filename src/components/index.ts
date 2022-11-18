@@ -11,6 +11,7 @@ import ProfilePage from './pages/ProfilePage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import WelcomePage from './pages/WelcomePage';
+import PrivateRoute from './PrivateRoute';
 
 export {
   App,
@@ -26,4 +27,5 @@ export {
   NotFoundPage,
   Board,
   ErrorPage,
+  PrivateRoute,
 };
