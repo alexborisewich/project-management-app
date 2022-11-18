@@ -1,5 +1,5 @@
 export interface ISignedInUser {
-  exp: string;
+  exp?: number;
   id: string;
   token: string;
 }

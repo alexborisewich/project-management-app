@@ -3,9 +3,3 @@ export type SignUpPageProps = {
 };
 
 export type SignUpPageState = Record<string, never>;
-
-export type Inputs = {
-  login: string;
-  password: string;
-  name: string;
-};

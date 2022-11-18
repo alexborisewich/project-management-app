@@ -1,30 +1,26 @@
 import LoadingButton from '@mui/lab/LoadingButton';
 import { TextField } from '@mui/material';
 import React from 'react';
-import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
+import { useForm, Controller, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { s, types } from './';
 
-import { loginValidation, passwordValidation } from '../SignInPage/validation';
-
+import { PATHS } from 'data';
 import { useSignUpMutation } from 'hooks';
+import { IUserSignUp } from 'interfaces';
+import { loginValidation, onPromiseHandler, passwordValidation } from 'utils';
 
-const SignInPage = ({ dataTestId }: types.SignUpPageProps) => {
-  const { control, handleSubmit } = useForm<types.Inputs>();
+const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
+  const { control, handleSubmit } = useForm<IUserSignUp>();
   const [signUp, data] = useSignUpMutation();
   const { errors } = useFormState({ control });
-  const onSubmit: SubmitHandler<types.Inputs> = async (data) => {
-    try {
-      await signUp(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+  const onSubmit = handleSubmit((signUpData) => signUp(signUpData));
 
   return (
     <section className={s.container} data-testid={dataTestId}>
-      <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)} className={s.form}>
+      <form onSubmit={onPromiseHandler(onSubmit)} className={s.form}>
         <h3 className={s.form__title}>Sign Up</h3>
         <Controller
           name='name'
@@ -77,7 +73,7 @@ const SignInPage = ({ dataTestId }: types.SignUpPageProps) => {
             />
           )}
         />
-        <Link to='/login' className={s.form__link}>
+        <Link to={PATHS.signIn} className={s.form__link}>
           You already have an account? Sign in
         </Link>
         <LoadingButton loading={data.isLoading} variant='contained' type='submit' sx={{ marginTop: '30px' }}>
@@ -88,4 +84,4 @@ const SignInPage = ({ dataTestId }: types.SignUpPageProps) => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;
