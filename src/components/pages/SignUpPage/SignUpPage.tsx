@@ -1,6 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import React from 'react';
 import { useForm, Controller, SubmitHandler, useFormState } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import { s, types } from './';
 
@@ -71,6 +72,9 @@ const SignInPage = ({ dataTestId }: types.SignUpPageProps) => {
             />
           )}
         />
+        <Link to='/login' className={s.form__link}>
+          You already have an account? Sign in
+        </Link>
         <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
           Submit
         </Button>
