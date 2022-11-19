@@ -119,3 +119,8 @@ export interface IErrorResponse {
   statusCode: number;
   message: string;
 }
+
+export interface IAPIError {
+  data: IErrorResponse;
+  status: number;
+}
