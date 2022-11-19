@@ -1,6 +1,6 @@
 import LoadingButton from '@mui/lab/LoadingButton';
 import { TextField } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ import { loginValidation, onPromiseHandler, passwordValidation, saveUser } from 
 
 const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
   const dispatch = useAppDispatch();
+  const [errorAPI, setErrorAPI] = useState<types.ErrorType>({ data: { statusCode: 0, message: '' }, status: 0 });
   const { control, handleSubmit } = useForm<IUserSignIn>();
   const [signIn, data] = useSignInMutation();
   const { errors } = useFormState({ control });
@@ -25,13 +26,17 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
         saveUser(userData);
       }
     } catch (error) {
-      console.log(error);
+      setErrorAPI(error as types.ErrorType);
     }
   });
 
   return (
     <section className={s.container} data-testid={dataTestId}>
-      <form onSubmit={onPromiseHandler(onSubmit)} className={s.form}>
+      <form
+        onSubmit={onPromiseHandler(onSubmit)}
+        className={data.isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
+      >
+        {data.isError && <span className={s.form__error_msg}>{errorAPI.data.message}</span>}
         <h3 className={s.form__title}>Sign In</h3>
         <Controller
           name='login'
