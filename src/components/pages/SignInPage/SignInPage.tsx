@@ -64,6 +64,7 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
             <TextField
               label='Password'
               size='small'
+              type='password'
               margin='normal'
               fullWidth={true}
               error={!!errors.password?.message}
