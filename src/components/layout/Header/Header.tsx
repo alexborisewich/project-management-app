@@ -12,6 +12,8 @@ import { s, types } from './';
 
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setUser } from 'store';
+import { removeSavedUser } from 'utils';
+// import { CheckTokenExpired } from 'utils';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 64,
@@ -65,7 +67,14 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const Header = ({ dataTestId }: types.HeaderProps) => {
   const { scrollYProgress } = useScroll();
   const state = useAppSelector((state) => state.app.user);
+  // CheckTokenExpired();
+  const tokenExpired = new Date((state?.exp || 0) * 1000);
+  const currentDate = new Date();
   const dispatch = useAppDispatch();
+  if (currentDate > tokenExpired) {
+    dispatch(setUser(null));
+    removeSavedUser();
+  }
   const boxShadow = useTransform(
     scrollYProgress,
     [0, 100],
@@ -75,6 +84,8 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
   return (
     <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
       <span>Logo</span>
+      {/* <span>{tokenExpired.toString()}</span> */}
+      {/* <span>{currentDate.toString()}</span> */}
       <motion.div className={s.wrapper__btns}>
         {!state?.token && (
           <Link to='/login'>
@@ -109,6 +120,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
             variant='contained'
             startIcon={<ExitToAppIcon />}
             onClick={() => {
+              removeSavedUser();
               dispatch(setUser(null));
             }}
             sx={{
