@@ -1,4 +1,5 @@
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LoginIcon from '@mui/icons-material/Login';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -8,6 +9,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { s, types } from './';
+
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { setUser } from 'store';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 64,
@@ -60,6 +64,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const Header = ({ dataTestId }: types.HeaderProps) => {
   const { scrollYProgress } = useScroll();
+  const state = useAppSelector((state) => state.app.user);
+  const dispatch = useAppDispatch();
   const boxShadow = useTransform(
     scrollYProgress,
     [0, 100],
@@ -70,30 +76,52 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
     <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
       <span>Logo</span>
       <motion.div className={s.wrapper__btns}>
-        <Link to='/login'>
+        {!state?.token && (
+          <Link to='/login'>
+            <Button
+              variant='contained'
+              startIcon={<LoginIcon />}
+              sx={{ borderRadius: '10px', backgroundColor: '#5352ED', height: '40px', textTransform: 'none' }}
+            >
+              Sign In
+            </Button>
+          </Link>
+        )}
+        {!state?.token && (
+          <Link to='/registration'>
+            <Button
+              variant='outlined'
+              startIcon={<AppRegistrationIcon />}
+              sx={{
+                borderRadius: '10px',
+                color: '#0D0D0D',
+                border: '1px solid #5352ED',
+                height: '40px',
+                textTransform: 'none',
+              }}
+            >
+              Sign Up
+            </Button>
+          </Link>
+        )}
+        {state?.token && (
           <Button
             variant='contained'
-            startIcon={<LoginIcon />}
-            sx={{ borderRadius: '10px', backgroundColor: '#5352ED', height: '40px', textTransform: 'none' }}
-          >
-            Sign In
-          </Button>
-        </Link>
-        <Link to='/registration'>
-          <Button
-            variant='outlined'
-            startIcon={<AppRegistrationIcon />}
+            startIcon={<ExitToAppIcon />}
+            onClick={() => {
+              dispatch(setUser(null));
+            }}
             sx={{
+              color: 'white',
               borderRadius: '10px',
-              color: '#0D0D0D',
-              border: '1px solid #5352ED',
+              backgroundColor: '#5352ED',
               height: '40px',
               textTransform: 'none',
             }}
           >
-            Sign Up
+            Sign out
           </Button>
-        </Link>
+        )}
         <MaterialUISwitch defaultChecked />
       </motion.div>
     </motion.header>
