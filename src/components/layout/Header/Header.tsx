@@ -115,7 +115,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               color: 'white',
               borderRadius: '10px',
               backgroundColor: '#5352ED',
-              height: '40px',
+              // height: '40px',
               textTransform: 'none',
             }}
           >
