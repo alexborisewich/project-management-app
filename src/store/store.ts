@@ -2,14 +2,15 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import reducer from './appSlice';
 
-import api from 'services';
+import { api } from 'services';
+import { rtkQueryErrorLogger } from 'services/rtkQueryErrorLogger';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     app: reducer,
     [api.reducerPath]: api.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware, rtkQueryErrorLogger),
 });
 
 export default store;
