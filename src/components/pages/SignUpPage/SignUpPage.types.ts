@@ -3,11 +3,3 @@ export type SignUpPageProps = {
 };
 
 export type SignUpPageState = Record<string, never>;
-
-export type ErrorType = {
-  data: {
-    statusCode: number;
-    message: string;
-  };
-  status: number;
-};
