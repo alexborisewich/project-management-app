@@ -1,10 +1,12 @@
-import { Button, TextField } from '@mui/material';
-import React from 'react';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { TextField } from '@mui/material';
+import React, { useEffect } from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { s, types } from './';
 
+import { PATHS } from 'data';
 import { useAppDispatch, useSignInMutation } from 'hooks';
 import { IUserSignIn } from 'interfaces';
 import { setUser } from 'store';
@@ -13,20 +15,27 @@ import { loginValidation, onPromiseHandler, passwordValidation, saveUser } from 
 const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
   const dispatch = useAppDispatch();
   const { control, handleSubmit } = useForm<IUserSignIn>();
-  const [signIn] = useSignInMutation();
-  const { errors } = useFormState({ control });
+  const [signIn, { data, isError, isLoading, error }] = useSignInMutation();
+  const {
+    errors: { login, password },
+  } = useFormState({ control });
 
-  const onSubmit = handleSubmit(async (signInData) => {
-    const userData = await signIn(signInData).unwrap();
-    if (userData) {
-      dispatch(setUser(userData));
-      saveUser(userData);
+  useEffect(() => {
+    if (data) {
+      dispatch(setUser(data));
+      saveUser(data);
     }
-  });
+  }, [data, dispatch]);
+
+  const onSubmit = handleSubmit(async (signInData) => await signIn(signInData));
 
   return (
     <section className={s.container} data-testid={dataTestId}>
-      <form onSubmit={onPromiseHandler(onSubmit)} className={s.form}>
+      <form
+        onSubmit={onPromiseHandler(onSubmit)}
+        className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
+      >
+        {error && <span className={s.form__error_msg}>{'status' in error && 'error' in error && error.error}</span>}
         <h3 className={s.form__title}>Sign In</h3>
         <Controller
           name='login'
@@ -39,8 +48,9 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
               size='small'
               margin='normal'
               fullWidth={true}
-              error={!!errors.login?.message}
-              helperText={errors.login?.message}
+              error={!!login?.message}
+              helperText={login?.message}
+              autoComplete='true'
               {...field}
             />
           )}
@@ -54,20 +64,22 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
             <TextField
               label='Password'
               size='small'
+              type='password'
               margin='normal'
               fullWidth={true}
-              error={!!errors.password?.message}
-              helperText={errors.password?.message}
+              error={!!password?.message}
+              helperText={password?.message}
+              autoComplete='true'
               {...field}
             />
           )}
         />
-        <Link to='/registration' className={s.form__link}>
+        <Link to={PATHS.signUp} className={s.form__link}>
           Don`t have an account? Sign up
         </Link>
-        <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
+        <LoadingButton loading={isLoading} variant='contained' type='submit' sx={{ marginTop: '30px' }}>
           Submit
-        </Button>
+        </LoadingButton>
       </form>
     </section>
   );

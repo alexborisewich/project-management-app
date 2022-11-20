@@ -1,4 +1,5 @@
-import { Button, TextField } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { TextField } from '@mui/material';
 import React from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -12,14 +13,20 @@ import { loginValidation, onPromiseHandler, passwordValidation } from 'utils';
 
 const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
   const { control, handleSubmit } = useForm<IUserSignUp>();
-  const [signUp] = useSignUpMutation();
-  const { errors } = useFormState({ control });
+  const [signUp, { isError, isLoading, error }] = useSignUpMutation();
+  const {
+    errors: { login, name, password },
+  } = useFormState({ control });
 
-  const onSubmit = handleSubmit((data) => signUp(data));
+  const onSubmit = handleSubmit(async (signUpData) => await signUp(signUpData));
 
   return (
     <section className={s.container} data-testid={dataTestId}>
-      <form onSubmit={onPromiseHandler(onSubmit)} className={s.form}>
+      <form
+        onSubmit={onPromiseHandler(onSubmit)}
+        className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
+      >
+        {error && <span className={s.form__error_msg}>{'status' in error && 'error' in error && error.error}</span>}
         <h3 className={s.form__title}>Sign Up</h3>
         <Controller
           name='name'
@@ -32,8 +39,9 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
               size='small'
               margin='normal'
               fullWidth={true}
-              error={!!errors.name?.message}
-              helperText={errors.name?.message}
+              error={!!name?.message}
+              helperText={name?.message}
+              autoComplete='true'
               {...field}
             />
           )}
@@ -49,8 +57,9 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
               size='small'
               margin='normal'
               fullWidth={true}
-              error={!!errors.login?.message}
-              helperText={errors.login?.message}
+              error={!!login?.message}
+              helperText={login?.message}
+              autoComplete='true'
               {...field}
             />
           )}
@@ -64,10 +73,12 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
             <TextField
               label='Password'
               size='small'
+              type='password'
               margin='normal'
               fullWidth={true}
-              error={!!errors.password?.message}
-              helperText={errors.password?.message}
+              error={!!password?.message}
+              helperText={password?.message}
+              autoComplete='true'
               {...field}
             />
           )}
@@ -75,9 +86,9 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
         <Link to={PATHS.signIn} className={s.form__link}>
           You already have an account? Sign in
         </Link>
-        <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
+        <LoadingButton loading={isLoading} variant='contained' type='submit' sx={{ marginTop: '30px' }}>
           Submit
-        </Button>
+        </LoadingButton>
       </form>
     </section>
   );
