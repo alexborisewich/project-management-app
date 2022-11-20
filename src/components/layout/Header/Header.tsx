@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { s, types } from './';
 
@@ -69,26 +70,30 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
     <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
       <span>Logo</span>
       <motion.div className={s.wrapper__btns}>
-        <Button
-          variant='contained'
-          startIcon={<LoginIcon />}
-          sx={{ borderRadius: '10px', backgroundColor: '#5352ED', height: '40px', textTransform: 'none' }}
-        >
-          Sign In
-        </Button>
-        <Button
-          variant='outlined'
-          startIcon={<AppRegistrationIcon />}
-          sx={{
-            borderRadius: '10px',
-            color: '#0D0D0D',
-            border: '1px solid #5352ED',
-            height: '40px',
-            textTransform: 'none',
-          }}
-        >
-          Sign Up
-        </Button>
+        <Link to='/login'>
+          <Button
+            variant='contained'
+            startIcon={<LoginIcon />}
+            sx={{ borderRadius: '10px', backgroundColor: '#5352ED', height: '40px', textTransform: 'none' }}
+          >
+            Sign In
+          </Button>
+        </Link>
+        <Link to='/registration'>
+          <Button
+            variant='outlined'
+            startIcon={<AppRegistrationIcon />}
+            sx={{
+              borderRadius: '10px',
+              color: '#0D0D0D',
+              border: '1px solid #5352ED',
+              height: '40px',
+              textTransform: 'none',
+            }}
+          >
+            Sign Up
+          </Button>
+        </Link>
         <MaterialUISwitch defaultChecked />
       </motion.div>
     </motion.header>

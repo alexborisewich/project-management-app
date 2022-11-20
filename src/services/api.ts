@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { baseQueryWithSignOut } from './baseQueryWithSignOut';
+import { baseQuery } from './baseQuery';
+// import { baseQueryWithSignOut } from './baseQueryWithSignOut';
 
 import { API_ENDPOINTS } from 'data';
 import {
@@ -29,7 +30,9 @@ import { decodeUserToken } from 'utils';
 
 const api = createApi({
   reducerPath: 'api',
-  baseQuery: baseQueryWithSignOut,
+  // baseQuery: baseQueryWithSignOut,
+  baseQuery: baseQuery,
+
   tagTypes: ['Boards', 'Columns', 'Files', 'Points', 'Tasks', 'Users'],
   endpoints: (build) => ({
     // user
@@ -313,5 +316,5 @@ const api = createApi({
     }),
   }),
 });
-
+export const { useGetBoardsByUserIdQuery } = api;
 export default api;

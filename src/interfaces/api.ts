@@ -9,6 +9,8 @@ export interface IUserSignUp extends IUserSignIn {
 }
 
 export interface ISuccessSignIn {
+  exp?: number;
+  id: string;
   token: string;
 }
 

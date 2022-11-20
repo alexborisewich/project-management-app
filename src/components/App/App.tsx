@@ -11,24 +11,33 @@ import {
   SignUpPage,
   WelcomePage,
   ErrorPage,
+  PrivateRoute,
 } from 'components';
-import { PATHS } from 'data';
+import { PATHS, PRIVACY_REASONS } from 'data';
+import { useAppSelector } from 'hooks';
 
-const App = () => (
-  <BrowserRouter basename={PATHS.base}>
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path={PATHS.welcome} element={<WelcomePage />} />
-        <Route path={PATHS.main} element={<MainPage />} />
-        <Route path={PATHS.board} element={<Board />} />
-        <Route path={PATHS.signIn} element={<SignUpPage />} />
-        <Route path={PATHS.signUp} element={<SignInPage />} />
-        <Route path={PATHS.profile} element={<ProfilePage />} />
-        <Route path={PATHS.error} element={<ErrorPage />} />
-      </Route>
-      <Route path={PATHS.notFound} element={<NotFoundPage />} />
-    </Routes>
-  </BrowserRouter>
-);
+const App = () => {
+  const { user } = useAppSelector((state) => state.app);
+  return (
+    <BrowserRouter basename={PATHS.base}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path={PATHS.welcome} element={<WelcomePage />} />
+          <Route path={PATHS.error} element={<ErrorPage />} />
+          <Route element={<PrivateRoute privacyReason={PRIVACY_REASONS.notForUser} isAvailable={!user} />}>
+            <Route path={PATHS.signIn} element={<SignInPage />} />
+            <Route path={PATHS.signUp} element={<SignUpPage />} />
+          </Route>
+          <Route element={<PrivateRoute privacyReason={PRIVACY_REASONS.userOnly} isAvailable={!!user} />}>
+            <Route path={PATHS.main} element={<MainPage />} />
+            <Route path={PATHS.board} element={<Board />} />
+            <Route path={PATHS.profile} element={<ProfilePage />} />
+          </Route>
+        </Route>
+        <Route path={PATHS.notFound} element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;

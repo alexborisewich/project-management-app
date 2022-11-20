@@ -1,4 +1,10 @@
 @import-normalize;
+@font-face {
+  font-family: RobotoCondensed;
+  font-weight: bold;
+  src: local("RobotoCondensed-Regular"),
+   url("./assets/fonts/RobotoCondensed-Regular.ttf") format("truetype");
+  }
 
 *,
 *::before,
@@ -16,6 +22,7 @@ html, body {
 
   height: 100%;
 
+  font-family: RobotoCondensed, sans-serif !important;
   text-rendering: optimizespeed;
 
   -webkit-font-smoothing: antialiased;

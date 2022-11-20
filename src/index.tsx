@@ -6,6 +6,7 @@ import { App } from 'components';
 import store from 'store';
 
 import './index.css';
+import './assets/fonts/RobotoCondensed-Regular.ttf';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

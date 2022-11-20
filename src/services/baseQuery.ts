@@ -8,6 +8,7 @@ export const baseQuery = fetchBaseQuery({
     const { user } = (getState() as ReturnType<typeof store.getState>).app;
     if (user) {
       headers.set('authorization', `Bearer ${user.token}`);
+      sessionStorage.setItem('tokenData', JSON.stringify(user.token));
     }
     return headers;
   },
