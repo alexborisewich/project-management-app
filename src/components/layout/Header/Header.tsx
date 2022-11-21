@@ -1,11 +1,13 @@
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EditIcon from '@mui/icons-material/Edit';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LoginIcon from '@mui/icons-material/Login';
 import Button from '@mui/material/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { s, types } from './';
 
@@ -17,6 +19,7 @@ import { removeSavedUser } from 'utils';
 
 const Header = ({ dataTestId }: types.HeaderProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { scrollYProgress } = useScroll();
   const { user } = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
@@ -32,17 +35,38 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
       <span>Logo</span>
       <motion.div className={s.wrapper__btns}>
         {user?.token ? (
-          <Button
-            variant='contained'
-            startIcon={<ExitToAppIcon />}
-            onClick={() => {
-              removeSavedUser();
-              dispatch(setUser(null));
-            }}
-            sx={signOutBtnSXProps}
-          >
-            Sign out
-          </Button>
+          <>
+            {location.pathname === '/profile' ? (
+              <Button
+                variant='contained'
+                startIcon={<ArrowBackIcon />}
+                onClick={() => navigate(PATHS.main)}
+                sx={signOutBtnSXProps}
+              >
+                Back to main
+              </Button>
+            ) : (
+              <Button
+                variant='contained'
+                startIcon={<EditIcon />}
+                onClick={() => navigate(PATHS.profile)}
+                sx={signOutBtnSXProps}
+              >
+                Edit profile
+              </Button>
+            )}
+            <Button
+              variant='contained'
+              startIcon={<ExitToAppIcon />}
+              onClick={() => {
+                removeSavedUser();
+                dispatch(setUser(null));
+              }}
+              sx={signOutBtnSXProps}
+            >
+              Sign out
+            </Button>
+          </>
         ) : (
           <>
             <Button
