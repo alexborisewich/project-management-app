@@ -36,7 +36,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
       <motion.div className={s.wrapper__btns}>
         {user?.token ? (
           <>
-            {location.pathname === '/profile' ? (
+            {location.pathname !== '/boards' && (
               <Button
                 variant='contained'
                 startIcon={<ArrowBackIcon />}
@@ -45,7 +45,8 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               >
                 Back to main
               </Button>
-            ) : (
+            )}
+            {location.pathname !== '/profile' && (
               <Button
                 variant='contained'
                 startIcon={<EditIcon />}
