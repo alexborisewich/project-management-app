@@ -1,57 +1,61 @@
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 import React, { useEffect, useState } from 'react';
 
 import { s, types } from './';
 
-import { Context } from './Context';
+import ModalCreateBoard from './ModalCreateBoard';
+import ModalDeleteBoard from './ModalDeleteBoard';
+import ModalUpdateInfo from './ModalUpdateInfo';
 
-//import { decode, getBoardsById } from './LocalApi';
-import { createBoard, createUser, decode, getBoardsById, getUsers, signIn } from './LocalApi';
-import BasicModal from './ModalCreateUser';
-//import { s, types } from './';
-//void createUser({
-// name: 'Mida q',
-// login: 'Molodai',
-// password: 'fudzam',
-//});
-//void signIn({
-//login: 'Molodai',
-//password: 'fudzam',
-//});
-//const solution = void getUsers().then((solve) => {
-//console.log(solve);
-//});
-//console.log(decode());
-//const createB = void createBoard({
-//// title: 'hiMaan3',
-// owner: decode() as string,
-//users: ['Che Tam'],
-//});
-//const boardById = void getBoardsById(decode() as string).then((solve) => {
-//  console.log(solve);
-//});
+import { useGetBoardsByUserIdQuery } from 'hooks';
+import { getSavedUser } from 'utils/localStorage';
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const Board = function ({ dataTestId }: types.BoardProps) {
-  const [allBoardsById, setAllBoardsById] = useState([{ title: 'Hello!', users: ['First Description!'] }]);
-  const [toggleModal, setToggleModal] = useState(false);
+  const [allBoardsById, setAllBoardsById] = useState([{ title: '', users: [''], _id: '' }]);
+  const userId = getSavedUser()?.id;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { data } = useGetBoardsByUserIdQuery(userId);
   useEffect(() => {
-    void getBoardsById(decode() as string).then((solve) => {
-      setAllBoardsById(solve ? solve : [{ title: 'Hello!', users: ['First Description!'] }]);
-    });
-  }, []);
+    if (data) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setAllBoardsById(data);
+    }
+  }, [data]);
   return (
-    <Context.Provider value={{ toggleModal, setToggleModal }}>
-      <div className={s.container} data-testid={dataTestId}>
-        <BasicModal />
-        {allBoardsById.map((item, index) => (
-          <div key={index}>
-            <div>
-              <p className={s.container}>{item.title}</p>
-              <p className={s.container}>{item.users}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Context.Provider>
+    <div className={s.container} data-testid={dataTestId}>
+      <Box sx={{ flexGrow: 1 }}>
+        <ModalCreateBoard />
+        <Grid container spacing={2}>
+          {allBoardsById.map((item) => (
+            <Grid item xs={4}>
+              <Item>
+                {' '}
+                <div key={item._id}>
+                  <div>
+                    <p className={s.container}>{item.title}</p>
+                    <p className={s.container}>{item.users}</p>
+                  </div>
+                  <ModalUpdateInfo boardId={item._id} title={item.title} users={item.users} />
+                  <ModalDeleteBoard boardId={item._id} />
+                </div>
+              </Item>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </div>
   );
 };
 

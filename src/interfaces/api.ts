@@ -124,3 +124,6 @@ export interface IAPIError {
   data: IErrorResponse;
   status: number;
 }
+export interface Props<T> {
+  boardId: T;
+}

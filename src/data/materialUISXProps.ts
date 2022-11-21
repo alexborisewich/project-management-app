@@ -19,3 +19,17 @@ export const SignUpBtnSXProps = {
   height: '40px',
   textTransform: 'none',
 };
+export const CreateUserBtnSXProps = {
+  borderRadius: '10px',
+  color: 'white',
+  width: '200px',
+  backgroundColor: '#5352ED',
+  textTransform: 'none',
+};
+export const CreateUserModalBtnSXProps = {
+  borderRadius: '10px',
+  color: 'white',
+  width: '50px',
+  backgroundColor: '#5352ED',
+  textTransform: 'none',
+};
