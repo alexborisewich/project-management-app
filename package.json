@@ -32,9 +32,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && echo '/* /index.html  200' | cat >build/_redirects ",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build && echo '/* /index.html  200' | cat >build/_redirects ",
+    "test": "craco test",
     "test-coverage": "npm run test -- --coverage --watch=false",
     "eject": "react-scripts eject",
     "lintcode": "eslint --ext .js,.jsx,.ts,.tsx src",
@@ -61,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "eslint": "^8.23.1",
