@@ -20,7 +20,6 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
   const [openModalConfirm, setOpenModalConfirm] = useState(false);
 
   const navigate = useNavigate();
-  // const [confirmDelete, setConfirmDelete] = useState(false);
   const userId = useAppSelector((state) => state.app).user!.id;
   const user = useGetUserByIdQuery(userId);
   const { control, handleSubmit } = useForm<IUserSignUp>();
@@ -37,13 +36,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
     setOpenModalConfirm(false);
     navigate(PATHS.profile);
   };
-  // const handleConfirmDelete = () => {
-  //   // alert('agree to delete');
-  //   // Deleter(userId);
-  //   setOpenModalConfirm(false);
-  //   navigate(PATHS.main);
-  // };
-  // console.log(user);
+
   return (
     <section className={s.container} data-testid={dataTestId}>
       {isSuccess && <DialogSlide></DialogSlide>}
@@ -56,7 +49,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
           onSubmit={onPromiseHandler(onSubmit)}
           className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
         >
-          {error && <span className={s.form__error_msg}>{'status' in error && 'error' in error && error.error}</span>}
+          {error && <span className={s.form__error_msg}>{(error as types.ErrorApi).data.message}</span>}
           <h3 className={s.form__title}>Edit your profile</h3>
           <Controller
             name='name'
