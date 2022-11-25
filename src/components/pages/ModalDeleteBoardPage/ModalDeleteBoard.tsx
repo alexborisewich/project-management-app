@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-import { s } from './';
+import s from './ModalDeleteBoard.module.css';
 
 import { CreateUserModalBtnSXProps } from 'data';
 import { useDeleteBoardByIdMutation } from 'hooks/api';
@@ -22,7 +22,7 @@ const style = {
   p: 4,
 };
 
-export default function ModalDeleteBoard<T>(props: React.PropsWithChildren<Props<T>>) {
+export default function ModalDeleteBoard<T extends string>(props: React.PropsWithChildren<Props<T>>) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,8 +47,7 @@ export default function ModalDeleteBoard<T>(props: React.PropsWithChildren<Props
               onClick={(e) => {
                 e.preventDefault();
                 handleClose();
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
+
                 void deleteBoardById(props.boardId);
               }}
             >

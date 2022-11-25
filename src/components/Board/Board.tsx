@@ -2,16 +2,16 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { s, types } from './';
 
-import ModalCreateBoard from './ModalCreateBoard';
-import ModalDeleteBoard from './ModalDeleteBoard';
-import ModalUpdateInfo from './ModalUpdateInfo';
-
+import ModalCreateBoard from 'components/pages/ModalCreateBoardPage/ModalCreateBoard';
+import ModalDeleteBoard from 'components/pages/ModalDeleteBoardPage/ModalDeleteBoard';
+import ModalUpdateInfo from 'components/pages/ModalUpdateBoardPage/ModalUpdateBoard';
 import { useGetBoardsByUserIdQuery } from 'hooks';
-import { getSavedUser } from 'utils/localStorage';
+import { RootState } from 'store/store';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -21,24 +21,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Board = function ({ dataTestId }: types.BoardProps) {
-  const [allBoardsById, setAllBoardsById] = useState([{ title: '', users: [''], _id: '' }]);
-  const userId = getSavedUser()?.id;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  const userIdChoise = useSelector((state: RootState) => state.app.user?.id);
+  const userId = userIdChoise === undefined ? '' : userIdChoise;
   const { data } = useGetBoardsByUserIdQuery(userId);
-  useEffect(() => {
-    if (data) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setAllBoardsById(data);
-    }
-  }, [data]);
   return (
     <div className={s.container} data-testid={dataTestId}>
       <Box sx={{ flexGrow: 1 }}>
         <ModalCreateBoard />
         <Grid container spacing={2}>
-          {allBoardsById.map((item) => (
+          {data?.map((item) => (
             <Grid item xs={4}>
               <Item>
                 {' '}

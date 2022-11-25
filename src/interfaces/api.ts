@@ -29,7 +29,11 @@ export interface INewBoard {
 }
 
 export interface IBoard extends INewBoard {
+  _id: string;
   id: string;
+}
+export interface IGetBoardById extends INewBoard {
+  _id: string;
 }
 
 // columns
