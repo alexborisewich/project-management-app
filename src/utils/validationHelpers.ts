@@ -9,3 +9,8 @@ export const passwordValidation = {
   required: STRICT_REQUIRED,
   validate: (value: string) => (value.length < 6 ? 'Password should be more than 6 symbols' : true),
 };
+
+export const titleValidation = {
+  required: STRICT_REQUIRED,
+  validate: (value: string) => (value.length < 1 ? false : true),
+};
