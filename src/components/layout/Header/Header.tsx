@@ -4,6 +4,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import Button from '@mui/material/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { s, types } from './';
@@ -24,6 +25,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
     [0, 100],
     ['3px 3px 3px rgba(83, 82, 237, 0)', '3px 3px 3px rgba(83, 82, 237, 100)']
   );
+  const { i18n } = useTranslation();
 
   return (
     <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
@@ -61,7 +63,10 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
             </Button>
           </>
         )}
-        <StyledMUISwitch defaultChecked />
+        <StyledMUISwitch
+          defaultChecked
+          onChange={() => void i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en')}
+        />
       </motion.div>
     </motion.header>
   );

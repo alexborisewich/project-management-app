@@ -20,19 +20,21 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.27.2",
     "framer-motion": "^7.6.7",
+    "i18next": "^22.0.6",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.4",
+    "react-i18next": "^12.0.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && echo '/* /index.html  200' | cat >build/_redirects ",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build && echo '/* /index.html  200' | cat >build/_redirects ",
+    "test": "craco test",
     "test-coverage": "npm run test -- --coverage --watch=false",
     "eject": "react-scripts eject",
     "lintcode": "eslint --ext .js,.jsx,.ts,.tsx src",
@@ -59,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "eslint": "^8.23.1",
