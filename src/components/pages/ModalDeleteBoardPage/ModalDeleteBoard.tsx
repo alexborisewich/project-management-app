@@ -29,7 +29,7 @@ export default function ModalDeleteBoard<T extends string>(props: React.PropsWit
   const [deleteBoardById] = useDeleteBoardByIdMutation();
 
   return (
-    <div>
+    <div className={s.position}>
       <Button onClick={handleOpen}>DELETE</Button>
       <Modal
         open={open}

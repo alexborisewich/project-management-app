@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import {
-  Board,
   Layout,
   MainPage,
   NotFoundPage,
@@ -12,6 +11,7 @@ import {
   WelcomePage,
   ErrorPage,
   PrivateRoute,
+  BoardRoutes,
 } from 'components';
 import { PATHS, PRIVACY_REASONS } from 'data';
 import { useAppSelector } from 'hooks';
@@ -30,7 +30,7 @@ const App = () => {
           </Route>
           <Route element={<PrivateRoute privacyReason={PRIVACY_REASONS.userOnly} isAvailable={!!user} />}>
             <Route path={PATHS.main} element={<MainPage />} />
-            <Route path={PATHS.board} element={<Board />} />
+            <Route path={PATHS.board} element={<BoardRoutes />} />
             <Route path={PATHS.profile} element={<ProfilePage />} />
           </Route>
         </Route>
