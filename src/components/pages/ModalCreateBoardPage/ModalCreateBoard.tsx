@@ -97,6 +97,7 @@ export default function ModalCreateBoard() {
                 />
               )}
             />
+
             <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
               Create
             </Button>
