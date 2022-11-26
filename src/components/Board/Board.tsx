@@ -11,6 +11,7 @@ import { s, types } from './';
 import ModalCreateBoard from 'components/pages/ModalCreateBoardPage/ModalCreateBoard';
 import ModalDeleteBoard from 'components/pages/ModalDeleteBoardPage/ModalDeleteBoard';
 import ModalUpdateInfo from 'components/pages/ModalUpdateBoardPage/ModalUpdateBoard';
+import { PATHS } from 'data';
 import { useGetBoardsByUserIdQuery } from 'hooks';
 import { RootState } from 'store/store';
 const Item = styled(Paper)(({ theme }) => ({
@@ -37,7 +38,7 @@ const Board = function ({ dataTestId }: types.BoardProps) {
                 <div key={item._id}>
                   <ModalUpdateInfo boardId={item._id} title={item.title} users={item.users} />
                   <ModalDeleteBoard boardId={item._id} />
-                  <Link to={`/boards/${item._id}`}>
+                  <Link to={PATHS.board}>
                     <div className={s.board_size}>
                       <p className={s.container}>{item.title}</p>
                       <p className={s.container}>{item.users}</p>

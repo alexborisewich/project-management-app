@@ -1,5 +1,6 @@
 import App from './App';
 import Board from './Board';
+import BoardRoutes from './BoardRoutes';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
 import Layout from './layout/Layout';
@@ -27,6 +28,7 @@ export {
   ProfilePage,
   NotFoundPage,
   Board,
+  BoardRoutes,
   ErrorPage,
   PrivateRoute,
   StyledMUISwitch,
