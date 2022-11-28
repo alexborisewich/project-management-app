@@ -1,6 +1,7 @@
 import App from './App';
 import Board from './Board';
 import BoardRoutes from './BoardRoutes';
+import ConfirmationModal from './common/ConfirmationModal';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
 import Layout from './layout/Layout';
@@ -32,4 +33,5 @@ export {
   ErrorPage,
   PrivateRoute,
   StyledMUISwitch,
+  ConfirmationModal,
 };
