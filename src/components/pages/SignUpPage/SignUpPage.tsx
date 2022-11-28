@@ -1,8 +1,9 @@
 import LoadingButton from '@mui/lab/LoadingButton';
 import { TextField } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { s, types } from './';
 
@@ -13,10 +14,13 @@ import { loginValidation, onPromiseHandler, passwordValidation } from 'utils';
 
 const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
   const { control, handleSubmit } = useForm<IUserSignUp>();
-  const [signUp, { isError, isLoading, error }] = useSignUpMutation();
+  const [signUp, { isError, isLoading, isSuccess }] = useSignUpMutation();
   const {
     errors: { login, name, password },
   } = useFormState({ control });
+  useEffect(() => {
+    if (isSuccess) toast.success('Successfully signed up!');
+  }, [isSuccess]);
 
   const onSubmit = handleSubmit(async (signUpData) => await signUp(signUpData));
 
@@ -26,7 +30,6 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
         onSubmit={onPromiseHandler(onSubmit)}
         className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
       >
-        {error && <span className={s.form__error_msg}>{'status' in error && 'error' in error && error.error}</span>}
         <h3 className={s.form__title}>Sign Up</h3>
         <Controller
           name='name'
