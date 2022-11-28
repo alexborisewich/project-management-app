@@ -1,5 +1,5 @@
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import EditIcon from '@mui/icons-material/Edit';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LoginIcon from '@mui/icons-material/Login';
@@ -34,19 +34,19 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
     <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
       <span>Logo</span>
       <motion.div className={s.wrapper__btns}>
-        {user?.token ? (
+        {user ? (
           <>
-            {location.pathname !== '/boards' && (
+            {location.pathname !== PATHS.main && (
               <Button
                 variant='contained'
-                startIcon={<ArrowBackIcon />}
+                startIcon={<DashboardIcon />}
                 onClick={() => navigate(PATHS.main)}
                 sx={signOutBtnSXProps}
               >
-                Back to main
+                Go to Main Page
               </Button>
             )}
-            {location.pathname !== '/profile' && (
+            {location.pathname !== PATHS.profile && (
               <Button
                 variant='contained'
                 startIcon={<EditIcon />}

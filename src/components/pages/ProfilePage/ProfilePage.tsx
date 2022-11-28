@@ -23,12 +23,12 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
   const userId = useAppSelector((state) => state.app).user!.id;
   const user = useGetUserByIdQuery(userId);
   const { control, handleSubmit } = useForm<IUserSignUp>();
-  const [Updater, { isError, isLoading, error, isSuccess }] = useUpdateUserByIdMutation();
+  const [updateUser, { isError, isLoading, isSuccess }] = useUpdateUserByIdMutation();
   const {
     errors: { login, name, password },
   } = useFormState({ control });
 
-  const onSubmit = handleSubmit(async (updateDate) => await Updater({ body: updateDate, userId }));
+  const onSubmit = handleSubmit(async (updateData) => await updateUser({ body: updateData, userId }));
   const handleOpenCofirm = () => {
     setOpenModalConfirm(true);
   };
@@ -49,7 +49,6 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
           onSubmit={onPromiseHandler(onSubmit)}
           className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
         >
-          {error && <span className={s.form__error_msg}>{(error as types.ErrorApi).data.message}</span>}
           <h3 className={s.form__title}>Edit your profile</h3>
           <Controller
             name='name'
@@ -110,18 +109,9 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
             <LoadingButton loading={isLoading} variant='contained' type='submit' sx={signOutBtnSXProps}>
               Update profile
             </LoadingButton>
-            <IconButton
-              color='primary'
-              aria-label='delete profile'
-              // variant='contained'
-              // startIcon={<DeleteIcon />}
-              onClick={() => handleOpenCofirm()}
-              // sx={signOutBtnSXProps}
-            >
+            <IconButton color='primary' aria-label='delete profile' onClick={() => handleOpenCofirm()}>
               <DeleteIcon />
             </IconButton>
-            {/* /IconButton> */}
-            {/* </Button> */}
           </div>
         </form>
       )}

@@ -2,7 +2,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
-// import { Link, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -17,35 +16,37 @@ import { loginValidation, onPromiseHandler, passwordValidation, saveUser } from 
 const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
   const { control, handleSubmit, getValues } = useForm<IUserSignUp>();
   const dispatch = useAppDispatch();
-  const [signIn, signInData] = useSignInMutation();
-  const [signUp, { data, isError, isLoading, isSuccess, status }] = useSignUpMutation();
+  const [signUp, { data: signUpData, isError: isSignUpError, isLoading: isSignUpLoading, isSuccess: isSignUpSuccess }] =
+    useSignUpMutation();
+  const [signIn, { data: signInData, isLoading: isSignInLoading, isSuccess: isSignInSuccess }] = useSignInMutation();
   const {
     errors: { login, name, password },
   } = useFormState({ control });
   useEffect(() => {
-    if (isSuccess) toast.success('Successfully signed up!');
-  }, [isSuccess]);
+    if (isSignUpSuccess) toast.success('Successfully signed up!');
+    if (isSignInSuccess) toast.success('Successfully signed in!');
+  }, [isSignInSuccess, isSignUpSuccess]);
 
   const onSubmit = handleSubmit(async (signUpData) => {
     await signUp(signUpData);
   });
   useEffect(() => {
-    const fetchSignIn = async () => await signIn({ password: getValues().password, login: data!.login });
-    if (status === 'fulfilled') {
-      void fetchSignIn();
-    }
-  }, [status, getValues, data, signIn]);
-  useEffect(() => {
-    if (signInData.status === 'fulfilled') {
-      dispatch(setUser(signInData.data));
-      saveUser(signInData.data);
-    }
-  }, [signInData.status, dispatch, signInData?.data]);
+    const signInAfterSignUp = async () => {
+      if (signUpData) {
+        await signIn({ password: getValues().password, login: signUpData.login });
+        if (signInData) {
+          dispatch(setUser(signInData));
+          saveUser(signInData);
+        }
+      }
+    };
+    void signInAfterSignUp();
+  }, [getValues, signIn, dispatch, signUpData, signInData]);
   return (
     <section className={s.container} data-testid={dataTestId}>
       <form
         onSubmit={onPromiseHandler(onSubmit)}
-        className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
+        className={isSignUpError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
       >
         <h3 className={s.form__title}>Sign Up</h3>
         <Controller
@@ -107,7 +108,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
           You already have an account? Sign in
         </Link>
         <LoadingButton
-          loading={isLoading || signInData.isLoading}
+          loading={isSignUpLoading || isSignInLoading}
           variant='contained'
           type='submit'
           sx={{ marginTop: '30px' }}
