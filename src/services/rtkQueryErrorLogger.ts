@@ -1,4 +1,5 @@
 import { isRejectedWithValue, PayloadAction } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 import { IAPIError } from 'interfaces';
 import { setUser } from 'store';
@@ -13,6 +14,7 @@ export const rtkQueryErrorLogger: Middleware = (api: MiddlewareAPI) => (next) =>
       removeSavedUser();
       api.dispatch(setUser(null));
     }
+    toast.error(data.message);
   }
   return next(action);
 };
