@@ -22,14 +22,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
   const {
     errors: { login, name, password },
   } = useFormState({ control });
-  useEffect(() => {
-    if (isSignUpSuccess) toast.success('Successfully signed up!');
-    if (isSignInSuccess) toast.success('Successfully signed in!');
-  }, [isSignInSuccess, isSignUpSuccess]);
 
-  const onSubmit = handleSubmit(async (signUpData) => {
-    await signUp(signUpData);
-  });
   useEffect(() => {
     const signInAfterSignUp = async () => {
       if (signUpData) {
@@ -42,6 +35,19 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
     };
     void signInAfterSignUp();
   }, [getValues, signIn, dispatch, signUpData, signInData]);
+
+  useEffect(() => {
+    if (isSignUpSuccess) toast.success('Successfully signed up!');
+  }, [isSignUpSuccess]);
+
+  useEffect(() => {
+    if (isSignInSuccess) toast.success('Successfully signed in!');
+  }, [isSignInSuccess]);
+
+  const onSubmit = handleSubmit(async (signUpData) => {
+    await signUp(signUpData);
+  });
+
   return (
     <section className={s.container} data-testid={dataTestId}>
       <form

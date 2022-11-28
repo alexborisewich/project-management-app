@@ -26,8 +26,11 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
       dispatch(setUser(data));
       saveUser(data);
     }
+  }, [data, dispatch]);
+
+  useEffect(() => {
     if (isSuccess) toast.success('Successfully signed in!');
-  }, [data, dispatch, isSuccess]);
+  }, [isSuccess]);
 
   const onSubmit = handleSubmit(async (signInData) => await signIn(signInData));
 
