@@ -12,7 +12,8 @@ import ModalCreateBoard from 'components/pages/ModalCreateBoardPage/ModalCreateB
 import ModalDeleteBoard from 'components/pages/ModalDeleteBoardPage/ModalDeleteBoard';
 import ModalUpdateInfo from 'components/pages/ModalUpdateBoardPage/ModalUpdateBoard';
 import { PATHS } from 'data';
-import { useGetBoardsByUserIdQuery } from 'hooks';
+import { useAppDispatch, useGetBoardsByUserIdQuery } from 'hooks';
+import { setBoardId } from 'store/appSlice';
 import { RootState } from 'store/store';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,6 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Board = function ({ dataTestId }: types.BoardProps) {
+  const dispatch = useAppDispatch();
   const userIdChoise = useSelector((state: RootState) => state.app.user?.id);
   const userId = userIdChoise === undefined ? '' : userIdChoise;
   const { data } = useGetBoardsByUserIdQuery(userId);
@@ -39,7 +41,12 @@ const Board = function ({ dataTestId }: types.BoardProps) {
                   <ModalUpdateInfo boardId={item._id} title={item.title} users={item.users} />
                   <ModalDeleteBoard boardId={item._id} />
                   <Link to={PATHS.board}>
-                    <div className={s.board_size}>
+                    <div
+                      onClick={() => {
+                        dispatch(setBoardId(item._id));
+                      }}
+                      className={s.board_size}
+                    >
                       <p className={s.container}>{item.title}</p>
                       <p className={s.container}>{item.users}</p>
                     </div>

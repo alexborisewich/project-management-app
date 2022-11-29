@@ -9,8 +9,9 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<ISignedInUser | null>) => void (state.user = action.payload),
+    setBoardId: (state, action: PayloadAction<string>) => void (state.boardId = action.payload),
   },
 });
 
 export default appSlice.reducer;
-export const { setUser } = appSlice.actions;
+export const { setUser, setBoardId } = appSlice.actions;
