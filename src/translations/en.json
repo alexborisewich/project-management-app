@@ -26,5 +26,20 @@
     "SignInLink": "Don`t have an account? Sign up",
     "BtnSubmit": "Submit",
     "TosterSuccessSignUp": "Successfully signed up!"
+  },
+  "Profile": {
+    "Header": "Edit your profile",
+    "InpName": "Name",
+    "InpLogin": "Login",
+    "InpPass": "New password",
+    "BtnSubmit": "Update profile",
+    "TosterSuccessUpdProfile": "Your profile has been updated!",
+    "TosterSuccessDelProfile": "Your profile has been deleted!",
+    "ModalMsg": "Are you sure want to delete your profile?"
+  },
+  "ConfirmDel": {
+    "Title": "Please, confirm",
+    "BtnAgr": "Agree",
+    "BtnDisagr": "Disagree"
   }
 }

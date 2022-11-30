@@ -26,5 +26,20 @@
     "SignInLink": "Уже есть профиль? Перейти к авторизации",
     "BtnSubmit": "Подтвердить",
     "TosterSuccessSignUp": "Вы успешно создали профиль!"
+  },
+  "Profile": {
+    "Header": "Редактировать ваш профиль",
+    "InpName": "Имя",
+    "InpLogin": "Логин",
+    "InpPass": "Новый пароль",
+    "BtnSubmit": "Подтвердить",
+    "TosterSuccessUpdProfile": "Ваш профиль успешно обновлен!",
+    "TosterSuccessDelProfile": "Ваш профиль успешно удален!",
+    "ModalMsg": "Вы уверены, что хотите удалить ваш профиль?"
+  },
+  "ConfirmDel": {
+    "Title": "Пожалуйста, подтвердите",
+    "BtnAgr": "Согласен",
+    "BtnDisagr": "Не согласен"
   }
 }
