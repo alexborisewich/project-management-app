@@ -18,6 +18,7 @@ import { setUser } from 'store';
 import { removeSavedUser } from 'utils';
 
 const Header = ({ dataTestId }: types.HeaderProps) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { scrollYProgress } = useScroll();
@@ -43,7 +44,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
                 onClick={() => navigate(PATHS.main)}
                 sx={signOutBtnSXProps}
               >
-                Go to Main Page
+                {t('Header.BtnGoBack')}
               </Button>
             )}
             {location.pathname !== PATHS.profile && (
@@ -53,7 +54,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
                 onClick={() => navigate(PATHS.profile)}
                 sx={signOutBtnSXProps}
               >
-                Edit profile
+                {t('Header.BtnEditProfile')}
               </Button>
             )}
             <Button
@@ -65,7 +66,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               }}
               sx={signOutBtnSXProps}
             >
-              Sign out
+              {t('Header.BtnSignOut')}
             </Button>
           </>
         ) : (
@@ -76,7 +77,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               sx={signInBtnSXProps}
               onClick={() => navigate(PATHS.signIn)}
             >
-              Sign In
+              {t('Header.BtnSignIn')}
             </Button>
             <Button
               variant='outlined'
@@ -84,7 +85,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               sx={SignUpBtnSXProps}
               onClick={() => navigate(PATHS.signUp)}
             >
-              Sign Up
+              {t('Header.BtnSignUp')}
             </Button>
           </>
         )}

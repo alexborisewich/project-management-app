@@ -1,6 +1,13 @@
 {
-  "LanguageSwitcher": {
-    "En": "En",
-    "Ru": "Ru"
+  "Header": {
+    "LanguageSwitcher": {
+      "En": "En",
+      "Ru": "Ru"
+    },
+    "BtnGoBack": "Go to Main Page",
+    "BtnEditProfile": "Edit profile",
+    "BtnSignOut": "Sign Out",
+    "BtnSignIn": "Sign In",
+    "BtnSignUp": "Sign Up"
   }
 }

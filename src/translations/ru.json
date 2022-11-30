@@ -1,6 +1,13 @@
 {
-  "LanguageSwitcher": {
-    "En": "Англ",
-    "Ru": "Рус"
+  "Header": {
+    "LanguageSwitcher": {
+      "En": "Англ",
+      "Ru": "Рус"
+    },
+    "BtnGoBack": "К списку досок",
+    "BtnEditProfile": "Редактировать профиль",
+    "BtnSignOut": "Выйти",
+    "BtnSignIn": "Войти",
+    "BtnSignUp": "Регистрация"
   }
 }
