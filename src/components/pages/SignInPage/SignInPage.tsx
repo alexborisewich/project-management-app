@@ -3,6 +3,7 @@ import { TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { s, types } from './';
 
@@ -15,7 +16,7 @@ import { loginValidation, onPromiseHandler, passwordValidation, saveUser } from 
 const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
   const dispatch = useAppDispatch();
   const { control, handleSubmit } = useForm<IUserSignIn>();
-  const [signIn, { data, isError, isLoading, error }] = useSignInMutation();
+  const [signIn, { data, isError, isLoading, isSuccess }] = useSignInMutation();
   const {
     errors: { login, password },
   } = useFormState({ control });
@@ -27,6 +28,10 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
     }
   }, [data, dispatch]);
 
+  useEffect(() => {
+    if (isSuccess) toast.success('Successfully signed in!');
+  }, [isSuccess]);
+
   const onSubmit = handleSubmit(async (signInData) => await signIn(signInData));
 
   return (
@@ -35,7 +40,6 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
         onSubmit={onPromiseHandler(onSubmit)}
         className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
       >
-        {error && <span className={s.form__error_msg}>{'status' in error && 'error' in error && error.error}</span>}
         <h3 className={s.form__title}>Sign In</h3>
         <Controller
           name='login'

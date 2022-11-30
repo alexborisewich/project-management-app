@@ -1,13 +1,13 @@
 //import { cleanup, render, screen } from '@testing-library/react';
 //import React from 'react';
 
-//import Board from './';
+//import BoardRoutes from './';
 
 //afterEach(cleanup);
 
-//describe('Board component', () => {
-// it('renders component successfully', () => {
-//   render(<Board dataTestId='test' />);
+//describe('BoardRoutes component', () => {
+//  it('renders component successfully', () => {
+//    render(<BoardRoutes dataTestId='test' />);
 //   expect(screen.getByTestId(/test/i)).toBeInTheDocument();
 // });
 //});

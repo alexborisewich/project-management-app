@@ -29,7 +29,11 @@ export interface INewBoard {
 }
 
 export interface IBoard extends INewBoard {
+  _id: string;
   id: string;
+}
+export interface IGetBoardById extends INewBoard {
+  _id: string;
 }
 
 // columns
@@ -123,4 +127,7 @@ export interface IErrorResponse {
 export interface IAPIError {
   data: IErrorResponse;
   status: number;
+}
+export interface Props<T> {
+  boardId: T;
 }

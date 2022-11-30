@@ -1,11 +1,12 @@
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import EditIcon from '@mui/icons-material/Edit';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LoginIcon from '@mui/icons-material/Login';
 import Button from '@mui/material/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { s, types } from './';
@@ -27,24 +28,25 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
     [0, 100],
     ['3px 3px 3px rgba(83, 82, 237, 0)', '3px 3px 3px rgba(83, 82, 237, 100)']
   );
+  const { i18n } = useTranslation();
 
   return (
     <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
       <span>Logo</span>
       <motion.div className={s.wrapper__btns}>
-        {user?.token ? (
+        {user ? (
           <>
-            {location.pathname !== '/boards' && (
+            {location.pathname !== PATHS.main && (
               <Button
                 variant='contained'
-                startIcon={<ArrowBackIcon />}
+                startIcon={<DashboardIcon />}
                 onClick={() => navigate(PATHS.main)}
                 sx={signOutBtnSXProps}
               >
-                Back to main
+                Go to Main Page
               </Button>
             )}
-            {location.pathname !== '/profile' && (
+            {location.pathname !== PATHS.profile && (
               <Button
                 variant='contained'
                 startIcon={<EditIcon />}
@@ -86,7 +88,10 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
             </Button>
           </>
         )}
-        <StyledMUISwitch defaultChecked />
+        <StyledMUISwitch
+          defaultChecked
+          onChange={() => void i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en')}
+        />
       </motion.div>
     </motion.header>
   );
