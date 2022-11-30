@@ -9,5 +9,13 @@
     "BtnSignOut": "Выйти",
     "BtnSignIn": "Войти",
     "BtnSignUp": "Регистрация"
+  },
+  "SignIn": {
+    "Header": "Войти",
+    "InpLogin": "Логин",
+    "InpPass": "Пароль",
+    "SignUpLink": "Еще нет профиля? Перейти к регистрации",
+    "BtnSubmit": "Подтвердить",
+    "TosterSuccessSignIn": "Вы успешно вошли в профиль!"
   }
 }

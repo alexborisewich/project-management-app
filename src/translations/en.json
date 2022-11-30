@@ -9,5 +9,13 @@
     "BtnSignOut": "Sign Out",
     "BtnSignIn": "Sign In",
     "BtnSignUp": "Sign Up"
+  },
+  "SignIn": {
+    "Header": "Sign In",
+    "InpLogin": "Login",
+    "InpPass": "Password",
+    "SignUpLink": "Don`t have an account? Sign up",
+    "BtnSubmit": "Submit",
+    "TosterSuccessSignIn": "Successfully signed in!"
   }
 }
