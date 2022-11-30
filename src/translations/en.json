@@ -17,5 +17,14 @@
     "SignUpLink": "Don`t have an account? Sign up",
     "BtnSubmit": "Submit",
     "TosterSuccessSignIn": "Successfully signed in!"
+  },
+  "SignUp": {
+    "Header": "Sign Up",
+    "InpName": "Name",
+    "InpLogin": "Login",
+    "InpPass": "Password",
+    "SignInLink": "Don`t have an account? Sign up",
+    "BtnSubmit": "Submit",
+    "TosterSuccessSignUp": "Successfully signed up!"
   }
 }

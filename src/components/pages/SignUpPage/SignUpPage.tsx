@@ -2,6 +2,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -14,6 +15,7 @@ import { setUser } from 'store';
 import { loginValidation, onPromiseHandler, passwordValidation, saveUser } from 'utils';
 
 const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
+  const { t } = useTranslation();
   const { control, handleSubmit, getValues } = useForm<IUserSignUp>();
   const dispatch = useAppDispatch();
   const [signUp, { data: signUpData, isError: isSignUpError, isLoading: isSignUpLoading, isSuccess: isSignUpSuccess }] =
@@ -37,12 +39,12 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
   }, [getValues, signIn, dispatch, signUpData, signInData]);
 
   useEffect(() => {
-    if (isSignUpSuccess) toast.success('Successfully signed up!');
-  }, [isSignUpSuccess]);
+    if (isSignUpSuccess) toast.success(`${t('SignUp.TosterSuccessSignUp')}`);
+  }, [isSignUpSuccess, t]);
 
   useEffect(() => {
-    if (isSignInSuccess) toast.success('Successfully signed in!');
-  }, [isSignInSuccess]);
+    if (isSignInSuccess) toast.success(`${t('SignIn.TosterSuccessSignIn')}`);
+  }, [isSignInSuccess, t]);
 
   const onSubmit = handleSubmit(async (signUpData) => {
     await signUp(signUpData);
@@ -54,7 +56,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
         onSubmit={onPromiseHandler(onSubmit)}
         className={isSignUpError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
       >
-        <h3 className={s.form__title}>Sign Up</h3>
+        <h3 className={s.form__title}>{t('SignUp.Header')}</h3>
         <Controller
           name='name'
           control={control}
@@ -62,7 +64,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
           defaultValue=''
           render={({ field }) => (
             <TextField
-              label='Name'
+              label={t('SignUp.InpName')}
               size='small'
               margin='normal'
               fullWidth={true}
@@ -80,7 +82,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
           defaultValue=''
           render={({ field }) => (
             <TextField
-              label='Login'
+              label={t('SignUp.InpLogin')}
               size='small'
               margin='normal'
               fullWidth={true}
@@ -98,7 +100,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
           defaultValue=''
           render={({ field }) => (
             <TextField
-              label='Password'
+              label={t('SignUp.InpPass')}
               size='small'
               type='password'
               margin='normal'
@@ -111,7 +113,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
           )}
         />
         <Link to={PATHS.signIn} className={s.form__link}>
-          You already have an account? Sign in
+          {t('SignUp.SignInLink')}
         </Link>
         <LoadingButton
           loading={isSignUpLoading || isSignInLoading}
@@ -119,7 +121,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
           type='submit'
           sx={{ marginTop: '30px' }}
         >
-          Submit
+          {t('SignUp.BtnSubmit')}
         </LoadingButton>
       </form>
     </section>
