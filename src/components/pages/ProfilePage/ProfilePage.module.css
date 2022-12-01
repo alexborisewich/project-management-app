@@ -36,6 +36,7 @@
 .form__title {
     font-size: 36px;
     color: #5352ED;
+    text-align: center;
 }
 
 .form__link {

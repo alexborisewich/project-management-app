@@ -3,6 +3,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { CircularProgress, IconButton, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm, useFormState } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { s, types } from './';
@@ -16,6 +17,7 @@ import { setUser } from 'store';
 import { loginValidation, onPromiseHandler, passwordValidation, removeSavedUser } from 'utils';
 
 const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
+  const { t } = useTranslation();
   const [openModalConfirm, setOpenModalConfirm] = useState(false);
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.app).user!.id;
@@ -28,12 +30,12 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
   } = useFormState({ control });
 
   useEffect(() => {
-    if (isUserUpdated) toast.success('Your profile has been updated!');
-  }, [isUserUpdated]);
+    if (isUserUpdated) toast.success(`${t('Messages.Toast.SuccessUpdProfile')}`);
+  }, [isUserUpdated, t]);
 
   useEffect(() => {
-    if (isUserDeleted) toast.success('Your profile has been deleted!');
-  }, [isUserDeleted]);
+    if (isUserDeleted) toast.success(`${t('Messages.Toast.SuccessDelProfile')}`);
+  }, [isUserDeleted, t]);
 
   const onSubmit = handleSubmit(async (updateData) => await updateUser({ body: updateData, userId }));
 
@@ -53,7 +55,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
           onSubmit={onPromiseHandler(onSubmit)}
           className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
         >
-          <h3 className={s.form__title}>Edit your profile</h3>
+          <h3 className={s.form__title}>{t('Profile.Title')}</h3>
           <Controller
             name='name'
             control={control}
@@ -61,7 +63,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
             defaultValue={userData?.name}
             render={({ field }) => (
               <TextField
-                label='Name'
+                label={t('Profile.InpName')}
                 size='small'
                 margin='normal'
                 fullWidth={true}
@@ -79,7 +81,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
             defaultValue={userData?.login}
             render={({ field }) => (
               <TextField
-                label='Login'
+                label={t('Profile.InpLogin')}
                 size='small'
                 margin='normal'
                 fullWidth={true}
@@ -97,7 +99,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
             defaultValue=''
             render={({ field }) => (
               <TextField
-                label='Password'
+                label={t('Profile.InpPass')}
                 size='small'
                 type='password'
                 margin='normal'
@@ -111,7 +113,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
           />
           <div>
             <LoadingButton loading={isUpdatingUser} variant='contained' type='submit' sx={signOutBtnSXProps}>
-              Update profile
+              {t('Buttons.BtnSubmit')}
             </LoadingButton>
             <IconButton color='primary' aria-label='delete profile' onClick={() => setOpenModalConfirm(true)}>
               <DeleteIcon />
@@ -123,7 +125,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
         openModalConfirm={openModalConfirm}
         handleConfirm={onPromiseHandler(handleConfirm)}
         handleClose={() => setOpenModalConfirm(false)}
-        text='Are you sure want to delete your profile?'
+        text={t('ConfirmModal.DelProfileQuestion')}
       />
     </section>
   );

@@ -1,6 +1,49 @@
 {
-  "LanguageSwitcher": {
-    "En": "En",
-    "Ru": "Ru"
+  "Header": {
+    "LanguageSwitcher": {
+      "En": "En",
+      "Ru": "Ru"
+    }
+  },
+  "SignIn": {
+    "Title": "Sign In",
+    "InpLogin": "Login",
+    "InpPass": "Password",
+    "SignUpLink": "Don`t have an account? Sign up"
+  },
+  "SignUp": {
+    "Title": "Sign Up",
+    "InpName": "Name",
+    "InpLogin": "Login",
+    "InpPass": "Password",
+    "SignInLink": "Already have an account? Sign in"
+  },
+  "Profile": {
+    "Title": "Edit your profile",
+    "InpName": "Name",
+    "InpLogin": "Login",
+    "InpPass": "New password"
+  },
+  "Buttons": {
+    "BtnMain": "Go to Main Page",
+    "BtnEditProfile": "Edit profile",
+    "BtnSignOut": "Sign Out",
+    "BtnSignIn": "Sign In",
+    "BtnSignUp": "Sign Up",
+    "BtnSubmit": "Submit",
+    "BtnAgr": "Agree",
+    "BtnDisagr": "Disagree"
+  },
+  "Messages": {
+    "Toast": {
+      "SuccessSignIn": "Successfully signed in!",
+      "SuccessSignUp": "Successfully signed up!",
+      "SuccessUpdProfile": "Your profile has been updated!",
+      "SuccessDelProfile": "Your profile has been deleted!"
+    }
+  },
+  "ConfirmModal": {
+    "Title": "Please, confirm",
+    "DelProfileQuestion": "Are you sure want to delete your profile?"
   }
 }

@@ -8,6 +8,6 @@
 //describe('BoardRoutes component', () => {
 //  it('renders component successfully', () => {
 //    render(<BoardRoutes dataTestId='test' />);
- //   expect(screen.getByTestId(/test/i)).toBeInTheDocument();
- // });
+//   expect(screen.getByTestId(/test/i)).toBeInTheDocument();
+// });
 //});

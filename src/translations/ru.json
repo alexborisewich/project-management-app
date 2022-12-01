@@ -1,6 +1,49 @@
 {
-  "LanguageSwitcher": {
-    "En": "Англ",
-    "Ru": "Рус"
+  "Header": {
+    "LanguageSwitcher": {
+      "En": "Англ",
+      "Ru": "Рус"
+    }
+  },
+  "SignIn": {
+    "Title": "Вход",
+    "InpLogin": "Логин",
+    "InpPass": "Пароль",
+    "SignUpLink": "Еще нет профиля? Зарегистрироваться"
+  },
+  "SignUp": {
+    "Title": "Регистрация",
+    "InpName": "Имя",
+    "InpLogin": "Логин",
+    "InpPass": "Пароль",
+    "SignInLink": "Уже есть профиль? Войти"
+  },
+  "Profile": {
+    "Title": "Редактировать Ваш профиль",
+    "InpName": "Имя",
+    "InpLogin": "Логин",
+    "InpPass": "Новый пароль"
+  },
+  "Buttons": {
+    "BtnMain": "На главную",
+    "BtnEditProfile": "Редактировать профиль",
+    "BtnSignOut": "Выйти",
+    "BtnSignIn": "Войти",
+    "BtnSignUp": "Регистрация",
+    "BtnSubmit": "Отправить",
+    "BtnAgr": "Согласен",
+    "BtnDisagr": "Не согласен"
+  },
+  "Messages": {
+    "Toast": {
+      "SuccessSignIn": "Вход выполнен успешно!",
+      "SuccessSignUp": "Регистрация выполнена успешно!",
+      "SuccessUpdProfile": "Ваш профиль обновлен!",
+      "SuccessDelProfile": "Ваш профиль удален!"
+    }
+  },
+  "ConfirmModal": {
+    "Title": "Пожалуйста, подтвердите",
+    "DelProfileQuestion": "Вы уверены, что хотите удалить Ваш профиль?"
   }
 }

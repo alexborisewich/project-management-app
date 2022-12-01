@@ -19,7 +19,7 @@ const StyledMUISwitch = styled(Switch)(({ theme }) => {
         color: '#000',
         transform: 'translateX(26px)',
         '& .MuiSwitch-thumb:before': {
-          content: `'${t('LanguageSwitcher.En')}'`,
+          content: `'${t('Header.LanguageSwitcher.En')}'`,
           paddingTop: 9,
           paddingLeft: 10,
         },
@@ -35,7 +35,7 @@ const StyledMUISwitch = styled(Switch)(({ theme }) => {
       height: 34,
       color: '#000',
       '&:before': {
-        content: `'${t('LanguageSwitcher.Ru')}'`,
+        content: `'${t('Header.LanguageSwitcher.Ru')}'`,
         position: 'absolute',
         width: '100%',
         height: '100%',

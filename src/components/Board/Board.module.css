@@ -1,13 +1,15 @@
- .container {
-  margin-left: 20px;
+.container {
+  overflow-x: scroll;
+
   margin-right: 20px;
-   overflow-x: scroll;
+  margin-left: 20px;
 }
-.position{
+
+.position {
   margin-top:40px;
   margin-bottom: 40px;
 }
-.board_size{
+
+.board_size {
   height: 100px;
 }
-
