@@ -30,13 +30,13 @@ const ConfirmationModal = ({ handleClose, handleConfirm, openModalConfirm, text 
       onClose={handleClose}
       aria-describedby='alert-dialog-slide-description'
     >
-      <DialogTitle>{t('ConfirmDel.Title')}</DialogTitle>
+      <DialogTitle>{t('ConfirmModal.Title')}</DialogTitle>
       <DialogContent>
         <DialogContentText id='alert-dialog-slide-description'>{text}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>{t('ConfirmDel.BtnDisagr')}</Button>
-        <Button onClick={handleConfirm}>{t('ConfirmDel.BtnAgr')}</Button>
+        <Button onClick={handleClose}>{t('Buttons.BtnDisagr')}</Button>
+        <Button onClick={handleConfirm}>{t('Buttons.BtnAgr')}</Button>
       </DialogActions>
     </Dialog>
   );

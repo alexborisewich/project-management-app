@@ -39,11 +39,11 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
   }, [getValues, signIn, dispatch, signUpData, signInData]);
 
   useEffect(() => {
-    if (isSignUpSuccess) toast.success(`${t('SignUp.TosterSuccessSignUp')}`);
+    if (isSignUpSuccess) toast.success(`${t('Messages.Toast.SuccessSignUp')}`);
   }, [isSignUpSuccess, t]);
 
   useEffect(() => {
-    if (isSignInSuccess) toast.success(`${t('SignIn.TosterSuccessSignIn')}`);
+    if (isSignInSuccess) toast.success(`${t('Messages.Toast.SuccessSignIn')}`);
   }, [isSignInSuccess, t]);
 
   const onSubmit = handleSubmit(async (signUpData) => {
@@ -56,7 +56,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
         onSubmit={onPromiseHandler(onSubmit)}
         className={isSignUpError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
       >
-        <h3 className={s.form__title}>{t('SignUp.Header')}</h3>
+        <h3 className={s.form__title}>{t('SignUp.Title')}</h3>
         <Controller
           name='name'
           control={control}
@@ -121,7 +121,7 @@ const SignUpPage = ({ dataTestId }: types.SignUpPageProps) => {
           type='submit'
           sx={{ marginTop: '30px' }}
         >
-          {t('SignUp.BtnSubmit')}
+          {t('Buttons.BtnSubmit')}
         </LoadingButton>
       </form>
     </section>

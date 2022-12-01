@@ -30,11 +30,11 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
   } = useFormState({ control });
 
   useEffect(() => {
-    if (isUserUpdated) toast.success(`${t('Profile.ToosterSuccessUpdProfile')}`);
+    if (isUserUpdated) toast.success(`${t('Messages.Toast.SuccessUpdProfile')}`);
   }, [isUserUpdated, t]);
 
   useEffect(() => {
-    if (isUserDeleted) toast.success(`${t('Profile.ToosterSuccessDelProfile')}`);
+    if (isUserDeleted) toast.success(`${t('Messages.Toast.SuccessDelProfile')}`);
   }, [isUserDeleted, t]);
 
   const onSubmit = handleSubmit(async (updateData) => await updateUser({ body: updateData, userId }));
@@ -55,7 +55,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
           onSubmit={onPromiseHandler(onSubmit)}
           className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
         >
-          <h3 className={s.form__title}>{t('Profile.Header')}</h3>
+          <h3 className={s.form__title}>{t('Profile.Title')}</h3>
           <Controller
             name='name'
             control={control}
@@ -113,7 +113,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
           />
           <div>
             <LoadingButton loading={isUpdatingUser} variant='contained' type='submit' sx={signOutBtnSXProps}>
-              {t('Profile.BtnSubmit')}
+              {t('Buttons.BtnSubmit')}
             </LoadingButton>
             <IconButton color='primary' aria-label='delete profile' onClick={() => setOpenModalConfirm(true)}>
               <DeleteIcon />
@@ -125,7 +125,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
         openModalConfirm={openModalConfirm}
         handleConfirm={onPromiseHandler(handleConfirm)}
         handleClose={() => setOpenModalConfirm(false)}
-        text={t('Profile.ModalMsg')}
+        text={t('ConfirmModal.DelProfileQuestion')}
       />
     </section>
   );

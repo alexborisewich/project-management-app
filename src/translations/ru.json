@@ -3,43 +3,47 @@
     "LanguageSwitcher": {
       "En": "Англ",
       "Ru": "Рус"
-    },
-    "BtnGoBack": "К списку досок",
+    }
+  },
+  "SignIn": {
+    "Title": "Вход",
+    "InpLogin": "Логин",
+    "InpPass": "Пароль",
+    "SignUpLink": "Еще нет профиля? Зарегистрироваться"
+  },
+  "SignUp": {
+    "Title": "Регистрация",
+    "InpName": "Имя",
+    "InpLogin": "Логин",
+    "InpPass": "Пароль",
+    "SignInLink": "Уже есть профиль? Войти"
+  },
+  "Profile": {
+    "Title": "Редактировать Ваш профиль",
+    "InpName": "Имя",
+    "InpLogin": "Логин",
+    "InpPass": "Новый пароль"
+  },
+  "Buttons": {
+    "BtnMain": "На главную",
     "BtnEditProfile": "Редактировать профиль",
     "BtnSignOut": "Выйти",
     "BtnSignIn": "Войти",
-    "BtnSignUp": "Регистрация"
-  },
-  "SignIn": {
-    "Header": "Войти",
-    "InpLogin": "Логин",
-    "InpPass": "Пароль",
-    "SignUpLink": "Еще нет профиля? Перейти к регистрации",
-    "BtnSubmit": "Подтвердить",
-    "TosterSuccessSignIn": "Вы успешно вошли в профиль!"
-  },
-  "SignUp": {
-    "Header": "Зарегистрироваться",
-    "InpName": "Имя",
-    "InpLogin": "Логин",
-    "InpPass": "Пароль",
-    "SignInLink": "Уже есть профиль? Перейти к авторизации",
-    "BtnSubmit": "Подтвердить",
-    "TosterSuccessSignUp": "Вы успешно создали профиль!"
-  },
-  "Profile": {
-    "Header": "Редактировать ваш профиль",
-    "InpName": "Имя",
-    "InpLogin": "Логин",
-    "InpPass": "Новый пароль",
-    "BtnSubmit": "Подтвердить",
-    "TosterSuccessUpdProfile": "Ваш профиль успешно обновлен!",
-    "TosterSuccessDelProfile": "Ваш профиль успешно удален!",
-    "ModalMsg": "Вы уверены, что хотите удалить ваш профиль?"
-  },
-  "ConfirmDel": {
-    "Title": "Пожалуйста, подтвердите",
+    "BtnSignUp": "Регистрация",
+    "BtnSubmit": "Отправить",
     "BtnAgr": "Согласен",
     "BtnDisagr": "Не согласен"
+  },
+  "Messages": {
+    "Toast": {
+      "SuccessSignIn": "Вход выполнен успешно!",
+      "SuccessSignUp": "Регистрация выполнена успешно!",
+      "SuccessUpdProfile": "Ваш профиль обновлен!",
+      "SuccessDelProfile": "Ваш профиль удален!"
+    }
+  },
+  "ConfirmModal": {
+    "Title": "Пожалуйста, подтвердите",
+    "DelProfileQuestion": "Вы уверены, что хотите удалить Ваш профиль?"
   }
 }

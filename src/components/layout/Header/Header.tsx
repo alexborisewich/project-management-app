@@ -44,7 +44,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
                 onClick={() => navigate(PATHS.main)}
                 sx={signOutBtnSXProps}
               >
-                {t('Header.BtnGoBack')}
+                {t('Buttons.BtnMain')}
               </Button>
             )}
             {location.pathname !== PATHS.profile && (
@@ -54,7 +54,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
                 onClick={() => navigate(PATHS.profile)}
                 sx={signOutBtnSXProps}
               >
-                {t('Header.BtnEditProfile')}
+                {t('Buttons.BtnEditProfile')}
               </Button>
             )}
             <Button
@@ -66,7 +66,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               }}
               sx={signOutBtnSXProps}
             >
-              {t('Header.BtnSignOut')}
+              {t('Buttons.BtnSignOut')}
             </Button>
           </>
         ) : (
@@ -77,7 +77,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               sx={signInBtnSXProps}
               onClick={() => navigate(PATHS.signIn)}
             >
-              {t('Header.BtnSignIn')}
+              {t('Buttons.BtnSignIn')}
             </Button>
             <Button
               variant='outlined'
@@ -85,7 +85,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
               sx={SignUpBtnSXProps}
               onClick={() => navigate(PATHS.signUp)}
             >
-              {t('Header.BtnSignUp')}
+              {t('Buttons.BtnSignUp')}
             </Button>
           </>
         )}
