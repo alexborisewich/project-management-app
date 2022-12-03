@@ -44,6 +44,7 @@
   },
   "ConfirmModal": {
     "Title": "Please, confirm",
-    "DelProfileQuestion": "Are you sure want to delete your profile?"
+    "DelProfileQuestion": "Are you sure want to delete your profile?",
+    "DelBoardQuestion": "Are you sure want to delete this board?"
   }
 }
