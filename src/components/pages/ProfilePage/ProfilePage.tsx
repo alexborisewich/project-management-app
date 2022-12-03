@@ -1,7 +1,6 @@
-import DeleteIcon from '@mui/icons-material/Delete';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { CircularProgress, IconButton, TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { CircularProgress, TextField } from '@mui/material';
+import React, { useEffect } from 'react';
 import { Controller, useForm, useFormState } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -18,7 +17,6 @@ import { loginValidation, onPromiseHandler, passwordValidation, removeSavedUser 
 
 const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
   const { t } = useTranslation();
-  const [openModalConfirm, setOpenModalConfirm] = useState(false);
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.app).user!.id;
   const { data: userData, isLoading: isUserLoading } = useGetUserByIdQuery(userId);
@@ -39,9 +37,8 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
 
   const onSubmit = handleSubmit(async (updateData) => await updateUser({ body: updateData, userId }));
 
-  const handleConfirm = async () => {
-    setOpenModalConfirm(false);
-    await deleteUser(userId);
+  const handleConfirm = () => {
+    void deleteUser(userId);
     removeSavedUser();
     dispatch(setUser(null));
   };
@@ -115,18 +112,16 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
             <LoadingButton loading={isUpdatingUser} variant='contained' type='submit' sx={signOutBtnSXProps}>
               {t('Buttons.BtnSubmit')}
             </LoadingButton>
-            <IconButton color='primary' aria-label='delete profile' onClick={() => setOpenModalConfirm(true)}>
-              <DeleteIcon />
-            </IconButton>
+            <ConfirmationModal
+              text='ConfirmModal.DelProfileQuestion'
+              id={userId}
+              btnAgr='Buttons.BtnAgr'
+              btnDisAgr='Buttons.BtnDisagr'
+              handleConfirm={handleConfirm}
+            />
           </div>
         </form>
       )}
-      <ConfirmationModal
-        openModalConfirm={openModalConfirm}
-        handleConfirm={onPromiseHandler(handleConfirm)}
-        handleClose={() => setOpenModalConfirm(false)}
-        text={t('ConfirmModal.DelProfileQuestion')}
-      />
     </section>
   );
 };
