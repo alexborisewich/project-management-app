@@ -1,9 +1,11 @@
-import { TextField } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import s from './ModalUpdateUser.module.css';
@@ -26,6 +28,7 @@ const style = {
 };
 
 export default function ModalUpdateInfo(props: { title: string; users: string[]; boardId: string }) {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -53,7 +56,9 @@ export default function ModalUpdateInfo(props: { title: string; users: string[];
 
   return (
     <div className={s.position}>
-      <Button onClick={handleOpen}>Edit</Button>
+      <IconButton color='primary' aria-label='edit profile' onClick={handleOpen}>
+        <EditIcon />
+      </IconButton>
       <Modal
         open={open}
         onClose={handleClose}
@@ -62,7 +67,7 @@ export default function ModalUpdateInfo(props: { title: string; users: string[];
       >
         <Box sx={style}>
           <form onSubmit={onPromiseHandler(handleSubmit(onSubmit))}>
-            <h3 className={s.form__title}>Edit Board</h3>
+            <h3 className={s.form__title}>{t('UpdateBoard.Title')}</h3>
             <Controller
               name='title'
               control={control}
@@ -70,7 +75,7 @@ export default function ModalUpdateInfo(props: { title: string; users: string[];
               defaultValue={props.title}
               render={({ field }) => (
                 <TextField
-                  label='Title'
+                  label={t('UpdateBoard.InpTitle')}
                   size='small'
                   margin='normal'
                   fullWidth={true}
@@ -87,7 +92,7 @@ export default function ModalUpdateInfo(props: { title: string; users: string[];
               defaultValue={props.users[0]}
               render={({ field }) => (
                 <TextField
-                  label='Description'
+                  label={t('UpdateBoard.InpDescr')}
                   multiline
                   margin='normal'
                   rows={4}
@@ -98,7 +103,7 @@ export default function ModalUpdateInfo(props: { title: string; users: string[];
               )}
             />
             <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
-              Edit
+              {t('UpdateBoard.Submit')}
             </Button>
           </form>
         </Box>
