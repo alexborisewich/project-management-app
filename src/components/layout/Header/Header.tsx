@@ -12,6 +12,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { s, types } from './';
 
 import { StyledMUISwitch } from 'components';
+import ModalCreateBoard from 'components/pages/ModalCreateBoardPage/ModalCreateBoard';
 import { PATHS, signInBtnSXProps, signOutBtnSXProps, SignUpBtnSXProps } from 'data';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setUser } from 'store';
@@ -37,6 +38,7 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
       <motion.div className={s.wrapper__btns}>
         {user ? (
           <>
+            <ModalCreateBoard />
             {location.pathname !== PATHS.main && (
               <Button
                 variant='contained'
