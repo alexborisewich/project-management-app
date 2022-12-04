@@ -1,8 +1,7 @@
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import EditIcon from '@mui/icons-material/Edit';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LoginIcon from '@mui/icons-material/Login';
+import { IconButton, Tooltip } from '@mui/material';
 import Button from '@mui/material/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React from 'react';
@@ -13,10 +12,9 @@ import { s, types } from './';
 
 import { StyledMUISwitch } from 'components';
 import ModalCreateBoard from 'components/pages/ModalCreateBoardPage/ModalCreateBoard';
-import { PATHS, signInBtnSXProps, signOutBtnSXProps, SignUpBtnSXProps } from 'data';
-import { useAppDispatch, useAppSelector } from 'hooks';
-import { setUser } from 'store';
-import { removeSavedUser } from 'utils';
+import ProfileMenu from 'components/ProfileMenu';
+import { PATHS, signInBtnSXProps, SignUpBtnSXProps } from 'data';
+import { useAppSelector } from 'hooks';
 
 const Header = ({ dataTestId }: types.HeaderProps) => {
   const { t } = useTranslation();
@@ -24,7 +22,6 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
   const location = useLocation();
   const { scrollYProgress } = useScroll();
   const { user } = useAppSelector((state) => state.app);
-  const dispatch = useAppDispatch();
   const boxShadow = useTransform(
     scrollYProgress,
     [0, 100],
@@ -34,42 +31,23 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
 
   return (
     <motion.header className={s.container} data-testid={dataTestId} style={{ boxShadow }}>
-      <span>Logo</span>
+      <span className={s.logo}>PMA</span>
       <motion.div className={s.wrapper__btns}>
         {user ? (
           <>
             <ModalCreateBoard />
             {location.pathname !== PATHS.main && (
-              <Button
-                variant='contained'
-                startIcon={<DashboardIcon />}
-                onClick={() => navigate(PATHS.main)}
-                sx={signOutBtnSXProps}
-              >
-                {t('Buttons.BtnMain')}
-              </Button>
+              <Tooltip title={t('Buttons.BtnMain')}>
+                <IconButton
+                  sx={{ color: '#5352ED', padding: '2px' }}
+                  aria-label='go to main'
+                  onClick={() => navigate(PATHS.main)}
+                >
+                  <DashboardIcon fontSize='large' />
+                </IconButton>
+              </Tooltip>
             )}
-            {location.pathname !== PATHS.profile && (
-              <Button
-                variant='contained'
-                startIcon={<EditIcon />}
-                onClick={() => navigate(PATHS.profile)}
-                sx={signOutBtnSXProps}
-              >
-                {t('Buttons.BtnEditProfile')}
-              </Button>
-            )}
-            <Button
-              variant='contained'
-              startIcon={<ExitToAppIcon />}
-              onClick={() => {
-                removeSavedUser();
-                dispatch(setUser(null));
-              }}
-              sx={signOutBtnSXProps}
-            >
-              {t('Buttons.BtnSignOut')}
-            </Button>
+            <ProfileMenu />
           </>
         ) : (
           <>

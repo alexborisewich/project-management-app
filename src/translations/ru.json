@@ -26,7 +26,7 @@
   },
   "Buttons": {
     "BtnMain": "На главную",
-    "BtnEditProfile": "Редактировать профиль",
+    "BtnEditProfile": "Профиль",
     "BtnSignOut": "Выйти",
     "BtnSignIn": "Войти",
     "BtnSignUp": "Регистрация",

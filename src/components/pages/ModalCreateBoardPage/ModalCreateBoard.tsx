@@ -1,5 +1,6 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { TextField } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -8,7 +9,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import s from './ModalCreateBoard.module.css';
+import { s, types } from './';
 
 import { CreateUserBtnSXProps } from 'data';
 import { useCreateBoardMutation } from 'hooks/api';
@@ -28,7 +29,7 @@ const style = {
   p: 4,
 };
 
-export default function ModalCreateBoard() {
+export default function ModalCreateBoard(props: types.ModalCreateBoardProps) {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -54,9 +55,18 @@ export default function ModalCreateBoard() {
 
   return (
     <div className={s.position}>
-      <Button sx={CreateUserBtnSXProps} onClick={handleOpen} variant='contained' startIcon={<AddCircleOutlineIcon />}>
-        {t('CreateBoard.BtnMain')}
-      </Button>
+      {props.btn ? (
+        <Button sx={CreateUserBtnSXProps} onClick={handleOpen} variant='contained' startIcon={<AddCircleOutlineIcon />}>
+          {t('CreateBoard.BtnMain')}
+        </Button>
+      ) : (
+        <Tooltip title={t('CreateBoard.BtnMain')}>
+          <IconButton sx={{ color: '#5352ED', padding: '2px' }} aria-label='add board' onClick={handleOpen}>
+            <AddCircleOutlineIcon fontSize='large' />
+          </IconButton>
+        </Tooltip>
+      )}
+
       <Modal
         open={open}
         onClose={handleClose}
