@@ -5,6 +5,12 @@
   src: local("RobotoCondensed-Regular"),
    url("./assets/fonts/RobotoCondensed-Regular.ttf") format("truetype");
   }
+@font-face {
+  font-family: Pocifico;
+  font-weight: bold;
+  src: local("Pocifico-Regular"),
+    url("./assets/fonts/Pacifico-Regular.ttf") format("truetype");
+  }
 
 *,
 *::before,

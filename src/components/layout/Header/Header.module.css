@@ -6,10 +6,16 @@
     align-items: center;
     justify-content: space-between;
 
-    /* height: 100px; */
     padding: 1rem;
 
     background: linear-gradient(126.96deg, #fff 7.02%, #EFF0F3 100.84%);
+}
+
+.logo {
+    cursor: default;
+
+    font-family: Pocifico, sans-serif !important;;
+    font-size: 2.1rem;
 }
 
 .wrapper__btns {
