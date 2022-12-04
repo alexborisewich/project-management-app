@@ -1,55 +1,55 @@
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
+import { Backdrop, CircularProgress, Divider } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { s, types } from './';
 
+import ConfirmationModal from 'components/common/ConfirmationModal';
 import ModalCreateBoard from 'components/pages/ModalCreateBoardPage/ModalCreateBoard';
-import ModalDeleteBoard from 'components/pages/ModalDeleteBoardPage/ModalDeleteBoard';
 import ModalUpdateInfo from 'components/pages/ModalUpdateBoardPage/ModalUpdateBoard';
 import { PATHS } from 'data';
-import { useGetBoardsByUserIdQuery } from 'hooks';
+import { useDeleteBoardByIdMutation, useGetBoardsByUserIdQuery } from 'hooks';
 import { RootState } from 'store/store';
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 const Board = function ({ dataTestId }: types.BoardProps) {
   const userIdChoise = useSelector((state: RootState) => state.app.user?.id);
   const userId = userIdChoise === undefined ? '' : userIdChoise;
-  const { data } = useGetBoardsByUserIdQuery(userId);
+  const { data, isLoading: isLoadingBoards } = useGetBoardsByUserIdQuery(userId);
+  const [deleteBoardById] = useDeleteBoardByIdMutation();
+  const handleConfirm = (id: string) => {
+    void deleteBoardById(id);
+  };
   return (
     <div className={s.container} data-testid={dataTestId}>
-      <Box sx={{ flexGrow: 1 }}>
-        <ModalCreateBoard />
-        <Grid container spacing={2}>
-          {data?.map((item) => (
-            <Grid item xs={4}>
-              <Item>
-                {' '}
-                <div key={item._id}>
-                  <ModalUpdateInfo boardId={item._id} title={item.title} users={item.users} />
-                  <ModalDeleteBoard boardId={item._id} />
-                  <Link to={PATHS.board}>
-                    <div className={s.board_size}>
-                      <p className={s.container}>{item.title}</p>
-                      <p className={s.container}>{item.users}</p>
-                    </div>
-                  </Link>
-                </div>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoadingBoards}>
+        <CircularProgress color='inherit' />
+      </Backdrop>
+      <ModalCreateBoard />
+      <div className={s.wrapper}>
+        {data?.map((item) => (
+          <div className={s.board} key={item._id}>
+            <Link to={PATHS.board}>
+              <div>
+                <h3 className={s.board__title}>{item.title}</h3>
+                <Divider />
+                <p className={s.board__descript}>{item.users}</p>
+              </div>
+            </Link>
+            <Divider />
+            <div className={s.board__control}>
+              <ModalUpdateInfo boardId={item._id} title={item.title} users={item.users} />
+              <ConfirmationModal
+                handleConfirm={handleConfirm}
+                text='ConfirmModal.DelBoardQuestion'
+                id={item._id}
+                btnAgr='Buttons.BtnAgr'
+                btnDisAgr='Buttons.BtnDisagr'
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
