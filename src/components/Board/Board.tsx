@@ -25,7 +25,7 @@ const Board = function ({ dataTestId }: types.BoardProps) {
       <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoadingBoards}>
         <CircularProgress color='inherit' />
       </Backdrop>
-      <ModalCreateBoard />
+      <ModalCreateBoard btn={true} />
       <div className={s.wrapper}>
         {data?.map((item) => (
           <div className={s.board} key={item._id}>
