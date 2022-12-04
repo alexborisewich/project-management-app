@@ -24,6 +24,7 @@ export const CreateUserBtnSXProps = {
   borderRadius: '10px',
   backgroundColor: '#5352ED',
   textTransform: 'none',
+  height: '40px',
 };
 export const CreateUserModalBtnSXProps = {
   borderRadius: '10px',
