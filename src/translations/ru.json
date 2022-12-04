@@ -44,6 +44,20 @@
   },
   "ConfirmModal": {
     "Title": "Пожалуйста, подтвердите",
-    "DelProfileQuestion": "Вы уверены, что хотите удалить Ваш профиль?"
+    "DelProfileQuestion": "Вы уверены, что хотите удалить Ваш профиль?",
+    "DelBoardQuestion": "Вы уверены, что хотите удалить эту доску?"
+  },
+  "UpdateBoard": {
+    "Title": "Изменить доску",
+    "InpTitle": "Заголовок",
+    "InpDescr":"Описание",
+    "Submit": "Изменить"
+  },
+  "CreateBoard": {
+    "BtnMain": "Создать доску",
+    "Title": "Создать доску",
+    "InpTitle": "Заголовок",
+    "InpDescr": "Описание",
+    "Submit": "Создать"
   }
 }
