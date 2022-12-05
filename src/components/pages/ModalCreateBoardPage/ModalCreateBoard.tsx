@@ -1,12 +1,15 @@
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { TextField } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import s from './ModalCreateUser.module.css';
+import { s, types } from './';
 
 import { CreateUserBtnSXProps } from 'data';
 import { useCreateBoardMutation } from 'hooks/api';
@@ -26,7 +29,8 @@ const style = {
   p: 4,
 };
 
-export default function ModalCreateBoard() {
+export default function ModalCreateBoard(props: types.ModalCreateBoardProps) {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,9 +55,18 @@ export default function ModalCreateBoard() {
 
   return (
     <div className={s.position}>
-      <Button sx={CreateUserBtnSXProps} onClick={handleOpen}>
-        Create Board
-      </Button>
+      {props.btn ? (
+        <Button sx={CreateUserBtnSXProps} onClick={handleOpen} variant='contained' startIcon={<AddCircleOutlineIcon />}>
+          {t('CreateBoard.BtnMain')}
+        </Button>
+      ) : (
+        <Tooltip title={t('CreateBoard.BtnMain')}>
+          <IconButton sx={{ color: '#5352ED', padding: '2px' }} aria-label='add board' onClick={handleOpen}>
+            <AddCircleOutlineIcon fontSize='large' />
+          </IconButton>
+        </Tooltip>
+      )}
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -62,7 +75,7 @@ export default function ModalCreateBoard() {
       >
         <Box sx={style}>
           <form onSubmit={onPromiseHandler(handleSubmit(onSubmit))}>
-            <h3 className={s.form__title}>Create Board</h3>
+            <h3 className={s.form__title}>{t('CreateBoard.Title')}</h3>
             <Controller
               name='title'
               control={control}
@@ -70,7 +83,7 @@ export default function ModalCreateBoard() {
               defaultValue=''
               render={({ field }) => (
                 <TextField
-                  label='Title'
+                  label={t('CreateBoard.InpTitle')}
                   size='small'
                   margin='normal'
                   fullWidth={true}
@@ -87,7 +100,7 @@ export default function ModalCreateBoard() {
               defaultValue=''
               render={({ field }) => (
                 <TextField
-                  label='Description'
+                  label={t('CreateBoard.InpDescr')}
                   multiline
                   margin='normal'
                   rows={4}
@@ -99,7 +112,7 @@ export default function ModalCreateBoard() {
             />
 
             <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
-              Create
+              {t('CreateBoard.Submit')}
             </Button>
           </form>
         </Box>

@@ -2,7 +2,9 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm, Controller, useFormState } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { s, types } from './';
 
@@ -14,8 +16,9 @@ import { loginValidation, onPromiseHandler, passwordValidation, saveUser } from 
 
 const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { control, handleSubmit } = useForm<IUserSignIn>();
-  const [signIn, { data, isError, isLoading, error }] = useSignInMutation();
+  const [signIn, { data, isError, isLoading, isSuccess }] = useSignInMutation();
   const {
     errors: { login, password },
   } = useFormState({ control });
@@ -27,6 +30,10 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
     }
   }, [data, dispatch]);
 
+  useEffect(() => {
+    if (isSuccess) toast.success(`${t('Messages.Toast.SuccessSignIn')}`);
+  }, [isSuccess, t]);
+
   const onSubmit = handleSubmit(async (signInData) => await signIn(signInData));
 
   return (
@@ -35,8 +42,7 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
         onSubmit={onPromiseHandler(onSubmit)}
         className={isError ? `${s.form__error || ''} ${s.form || ''}` : s.form}
       >
-        {error && <span className={s.form__error_msg}>{'status' in error && 'error' in error && error.error}</span>}
-        <h3 className={s.form__title}>Sign In</h3>
+        <h3 className={s.form__title}>{t('SignIn.Title')}</h3>
         <Controller
           name='login'
           control={control}
@@ -44,7 +50,7 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
           defaultValue=''
           render={({ field }) => (
             <TextField
-              label='Login'
+              label={t('SignIn.InpLogin')}
               size='small'
               margin='normal'
               fullWidth={true}
@@ -62,7 +68,7 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
           rules={passwordValidation}
           render={({ field }) => (
             <TextField
-              label='Password'
+              label={t('SignIn.InpPass')}
               size='small'
               type='password'
               margin='normal'
@@ -75,10 +81,10 @@ const SignInPage = ({ dataTestId }: types.SignInPageProps) => {
           )}
         />
         <Link to={PATHS.signUp} className={s.form__link}>
-          Don`t have an account? Sign up
+          {t('SignIn.SignUpLink')}
         </Link>
         <LoadingButton loading={isLoading} variant='contained' type='submit' sx={{ marginTop: '30px' }}>
-          Submit
+          {t('Buttons.BtnSubmit')}
         </LoadingButton>
       </form>
     </section>
