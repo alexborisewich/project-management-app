@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/project-management-app/static/css/main.392f2337.css",
-    "main.js": "/project-management-app/static/js/main.18bc0aca.js",
+    "main.css": "/project-management-app/static/css/main.deea599a.css",
+    "main.js": "/project-management-app/static/js/main.af806948.js",
     "static/media/Pacifico-Regular.ttf": "/project-management-app/static/media/Pacifico-Regular.c0d735fc04154e03a691.ttf",
     "static/media/RobotoCondensed-Regular.ttf": "/project-management-app/static/media/RobotoCondensed-Regular.fc3d2f2e3a203d0037c1.ttf",
     "static/media/main.png": "/project-management-app/static/media/main.ada019f2b011b95591b6.png",
@@ -9,11 +9,11 @@
     "static/media/rs_logo.svg": "/project-management-app/static/media/rs_logo.f7b30d1622f4d82d8168da65a0010488.svg",
     "static/media/github.svg": "/project-management-app/static/media/github.42e31f76028ae80ab03e944622f47a76.svg",
     "index.html": "/project-management-app/index.html",
-    "main.392f2337.css.map": "/project-management-app/static/css/main.392f2337.css.map",
-    "main.18bc0aca.js.map": "/project-management-app/static/js/main.18bc0aca.js.map"
+    "main.deea599a.css.map": "/project-management-app/static/css/main.deea599a.css.map",
+    "main.af806948.js.map": "/project-management-app/static/js/main.af806948.js.map"
   },
   "entrypoints": [
-    "static/css/main.392f2337.css",
-    "static/js/main.18bc0aca.js"
+    "static/css/main.deea599a.css",
+    "static/js/main.af806948.js"
   ]
 }
