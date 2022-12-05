@@ -6,6 +6,7 @@ const Container = styled.div`
   border: 1px solid lightblue;
   border-radius: 2px;
   padding: 8px;
+  overflow: scroll;
 `;
 
 const Task = (props: {

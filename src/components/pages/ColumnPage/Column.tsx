@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
+import s from './Column.module.css';
+
 import ModalCreateTask from '../ModalCreateTaskPage/ModalCreateTask';
 import Task from '../TaskPage/Task';
 
-import { useGetTasksInColumnQuery } from 'hooks/api';
+import ConfirmationModal from 'components/common/ConfirmationModal';
+import { useDeleteColumnByIdMutation, useGetTasksInColumnQuery } from 'hooks/api';
 import { IChangableTask } from 'interfaces';
 import { getBoardId } from 'utils';
 const Container = styled.div`
@@ -24,6 +27,10 @@ const Tasklist = styled.div`
   flex-grow: 1;
   min-height: 100px;
 `;
+const TaskHeight = styled.div`
+  max-height: 300px;
+  overflow: scroll;
+`;
 
 const Column = (props: {
   column: {
@@ -38,6 +45,10 @@ const Column = (props: {
   let getTasks = useGetTasksInColumnQuery({ boardId: boardId, columnId: props.column._id }).data;
 
   const AdjustTasks = props.localTask[props.column._id as unknown as number] as unknown as IChangableTask[];
+  const [deleteBoardById] = useDeleteColumnByIdMutation();
+  const handleConfirm = (id: string) => {
+    void deleteBoardById({ boardId: boardId, columnId: id });
+  };
 
   if (AdjustTasks) {
     AdjustTasks.sort(function (a, b) {
@@ -64,17 +75,28 @@ const Column = (props: {
       {(provided) => (
         <Container ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <Title>{props.column.title}</Title>
-          <Droppable droppableId={props.column._id} type='task'>
-            {(provided) => (
-              <Tasklist ref={provided.innerRef} {...provided.droppableProps}>
-                {AdjustTasks?.map((item, index) => (
-                  <Task key={item._id} tasks={item} index={index} />
-                ))}
-                {provided.placeholder}
-              </Tasklist>
-            )}
-          </Droppable>
-          <ModalCreateTask column={props.column._id} />
+          <TaskHeight>
+            <Droppable droppableId={props.column._id} type='task'>
+              {(provided) => (
+                <Tasklist ref={provided.innerRef} {...provided.droppableProps}>
+                  {AdjustTasks?.map((item, index) => (
+                    <Task key={item._id} tasks={item} index={index} />
+                  ))}
+                  {provided.placeholder}
+                </Tasklist>
+              )}
+            </Droppable>
+          </TaskHeight>
+          <div className={s.board__control}>
+            <ModalCreateTask column={props.column._id} />
+            <ConfirmationModal
+              handleConfirm={handleConfirm}
+              text='ConfirmModal.DelBoardQuestion'
+              id={props.column._id}
+              btnAgr='Buttons.BtnAgr'
+              btnDisAgr='Buttons.BtnDisagr'
+            />
+          </div>
         </Container>
       )}
     </Draggable>

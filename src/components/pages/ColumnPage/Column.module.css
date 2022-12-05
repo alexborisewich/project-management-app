@@ -9,3 +9,6 @@
 .task_list{
   padding: 8px;
 }
+.board__control {
+  display: flex;
+}

@@ -1,4 +1,5 @@
-import { TextField } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -7,7 +8,6 @@ import { useForm, Controller } from 'react-hook-form';
 
 import s from './ModalCreateTask.module.css';
 
-import { CreateTaskModalBtnSXProps } from 'data';
 import { useCreateTaskMutation } from 'hooks/api';
 import { INewTask } from 'interfaces';
 import { titleValidation, onPromiseHandler, getBoardId } from 'utils';
@@ -55,9 +55,9 @@ export default function ModalCreateTask(props: { column: string }) {
 
   return (
     <div className={s.position}>
-      <Button sx={CreateTaskModalBtnSXProps} onClick={handleOpen}>
-        Create
-      </Button>
+      <IconButton color='primary' aria-label='edit profile' onClick={handleOpen}>
+        <EditIcon />
+      </IconButton>
       <Modal
         open={open}
         onClose={handleClose}

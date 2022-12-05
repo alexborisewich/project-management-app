@@ -16,9 +16,11 @@ function search(a: IChangableTask[] | never, b: string) {
 }
 const Container = styled.div`
   display: flex;
-`;
-const ContainerInternal = styled.div`
   overflow: scroll;
+  margin: 0;
+`;
+const InnerContainer = styled.div`
+  margin: 0;
 `;
 
 const BoardRoutes = () => {
@@ -134,9 +136,9 @@ const BoardRoutes = () => {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={boardId} direction='horizontal' type='column'>
           {(provided) => (
-            <ContainerInternal>
-              <Container ref={provided.innerRef} {...provided.droppableProps}>
-                {screenResult?.map((item, index) => (
+            <Container ref={provided.innerRef} {...provided.droppableProps}>
+              {screenResult?.map((item, index) => (
+                <InnerContainer>
                   <Column
                     key={item._id}
                     column={item}
@@ -144,10 +146,10 @@ const BoardRoutes = () => {
                     localTask={boardTask}
                     index={index}
                   />
-                ))}
-                {provided.placeholder}
-              </Container>
-            </ContainerInternal>
+                </InnerContainer>
+              ))}
+              {provided.placeholder}
+            </Container>
           )}
         </Droppable>
       </DragDropContext>
