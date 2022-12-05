@@ -11,6 +11,7 @@ import ModalUpdateInfo from 'components/pages/ModalUpdateBoardPage/ModalUpdateBo
 import { PATHS } from 'data';
 import { useDeleteBoardByIdMutation, useGetBoardsByUserIdQuery } from 'hooks';
 import { RootState } from 'store/store';
+import { saveBoardId } from 'utils';
 
 const Board = function ({ dataTestId }: types.BoardProps) {
   const userIdChoise = useSelector((state: RootState) => state.app.user?.id);
@@ -30,7 +31,11 @@ const Board = function ({ dataTestId }: types.BoardProps) {
         {data?.map((item) => (
           <div className={s.board} key={item._id}>
             <Link to={PATHS.board}>
-              <div>
+              <div
+                onClick={() => {
+                  saveBoardId(item._id);
+                }}
+              >
                 <h3 className={s.board__title}>{item.title}</h3>
                 <Divider />
                 <p className={s.board__descript}>{item.users}</p>
