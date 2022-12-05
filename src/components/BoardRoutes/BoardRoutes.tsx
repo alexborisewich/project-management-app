@@ -19,9 +19,6 @@ const Container = styled.div`
   overflow: scroll;
   margin: 0;
 `;
-const InnerContainer = styled.div`
-  margin: 0;
-`;
 
 const BoardRoutes = () => {
   const boardId = getBoardId();
@@ -138,15 +135,7 @@ const BoardRoutes = () => {
           {(provided) => (
             <Container ref={provided.innerRef} {...provided.droppableProps}>
               {screenResult?.map((item, index) => (
-                <InnerContainer>
-                  <Column
-                    key={item._id}
-                    column={item}
-                    setBoardTask={setBoardTask}
-                    localTask={boardTask}
-                    index={index}
-                  />
-                </InnerContainer>
+                <Column key={item._id} column={item} setBoardTask={setBoardTask} localTask={boardTask} index={index} />
               ))}
               {provided.placeholder}
             </Container>
