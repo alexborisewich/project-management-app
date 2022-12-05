@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/project-management-app/static/css/main.392f2337.css",
-    "main.js": "/project-management-app/static/js/main.18bc0aca.js",
-    "static/media/Pacifico-Regular.ttf": "/project-management-app/static/media/Pacifico-Regular.c0d735fc04154e03a691.ttf",
-    "static/media/RobotoCondensed-Regular.ttf": "/project-management-app/static/media/RobotoCondensed-Regular.fc3d2f2e3a203d0037c1.ttf",
-    "static/media/main.png": "/project-management-app/static/media/main.ada019f2b011b95591b6.png",
-    "static/media/Fronted.png": "/project-management-app/static/media/Fronted.a0ed21bab9f65350e304.png",
-    "static/media/rs_logo.svg": "/project-management-app/static/media/rs_logo.f7b30d1622f4d82d8168da65a0010488.svg",
-    "static/media/github.svg": "/project-management-app/static/media/github.42e31f76028ae80ab03e944622f47a76.svg",
-    "index.html": "/project-management-app/index.html",
-    "main.392f2337.css.map": "/project-management-app/static/css/main.392f2337.css.map",
-    "main.18bc0aca.js.map": "/project-management-app/static/js/main.18bc0aca.js.map"
+    "main.css": "/static/css/main.e47ad40d.css",
+    "main.js": "/static/js/main.f233d141.js",
+    "static/media/Pacifico-Regular.ttf": "/static/media/Pacifico-Regular.c0d735fc04154e03a691.ttf",
+    "static/media/RobotoCondensed-Regular.ttf": "/static/media/RobotoCondensed-Regular.fc3d2f2e3a203d0037c1.ttf",
+    "static/media/main.png": "/static/media/main.ada019f2b011b95591b6.png",
+    "static/media/Fronted.png": "/static/media/Fronted.a0ed21bab9f65350e304.png",
+    "static/media/rs_logo.svg": "/static/media/rs_logo.f7b30d1622f4d82d8168da65a0010488.svg",
+    "static/media/github.svg": "/static/media/github.42e31f76028ae80ab03e944622f47a76.svg",
+    "index.html": "/index.html",
+    "main.e47ad40d.css.map": "/static/css/main.e47ad40d.css.map",
+    "main.f233d141.js.map": "/static/js/main.f233d141.js.map"
   },
   "entrypoints": [
-    "static/css/main.392f2337.css",
-    "static/js/main.18bc0aca.js"
+    "static/css/main.e47ad40d.css",
+    "static/js/main.f233d141.js"
   ]
 }
