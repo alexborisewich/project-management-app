@@ -1,12 +1,16 @@
-import { Button } from '@mui/material';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import { Backdrop, CircularProgress, Button } from '@mui/material';
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { s } from './';
 
 import Column from 'components/pages/ColumnPage/Column';
 import ModalCreateColumn from 'components/pages/ModalCreateColumnPage/ModalCreateColumn';
-import { CreateBackBtnSXProps, PATHS } from 'data';
+import { PATHS, signInBtnSXProps } from 'data';
 import { useGetColumnsInBoardQuery, useUpdateSetOfColumnsMutation } from 'hooks/api';
 import { IChangableTask, IColumn } from 'interfaces';
 import { getBoardId } from 'utils';
@@ -17,13 +21,18 @@ function search(a: IChangableTask[] | never, b: string) {
 const Container = styled.div`
   display: flex;
   overflow: scroll;
+  gap: 1rem;
   margin: 0;
+  padding-bottom: 1.5rem;
 `;
 
 const BoardRoutes = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const boardId = getBoardId();
   const [columnTask, setColumnTask] = useState<IColumn[] | null>(null);
   let columns = useGetColumnsInBoardQuery(boardId).data;
+  const { isLoading } = useGetColumnsInBoardQuery(boardId);
   if (columns) {
     columns = [...columns];
     columns?.sort(function (a, b) {
@@ -125,11 +134,23 @@ const BoardRoutes = () => {
   };
 
   return (
-    <>
-      <ModalCreateColumn />
-      <Link to={PATHS.main}>
-        <Button sx={CreateBackBtnSXProps}>Back</Button>
-      </Link>
+    <div className={s.container}>
+      {isLoading && (
+        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
+          <CircularProgress color='inherit' />
+        </Backdrop>
+      )}
+      <div className={s.boardControl}>
+        <Button
+          variant='contained'
+          startIcon={<DashboardIcon />}
+          sx={signInBtnSXProps}
+          onClick={() => navigate(PATHS.main)}
+        >
+          {t('Buttons.BtnMain')}
+        </Button>
+        <ModalCreateColumn />
+      </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={boardId} direction='horizontal' type='column'>
           {(provided) => (
@@ -142,7 +163,7 @@ const BoardRoutes = () => {
           )}
         </Droppable>
       </DragDropContext>
-    </>
+    </div>
   );
 };
 

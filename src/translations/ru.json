@@ -45,13 +45,18 @@
   "ConfirmModal": {
     "Title": "Пожалуйста, подтвердите",
     "DelProfileQuestion": "Вы уверены, что хотите удалить Ваш профиль?",
-    "DelBoardQuestion": "Вы уверены, что хотите удалить эту доску?"
+    "DelBoardQuestion": "Вы уверены, что хотите удалить эту доску?",
+    "DelColumnQuestion": "Вы уверены, что хотите удалить эту колонку?",
+    "TooltipProfile": "Удалить профиль",
+    "TooltipBoard": "Удалить доску",
+    "TooltipColumn": "Удалить колонку"
   },
   "UpdateBoard": {
     "Title": "Изменить доску",
     "InpTitle": "Заголовок",
-    "InpDescr": "Описание",
-    "Submit": "Изменить"
+    "InpDescr":"Описание",
+    "Submit": "Изменить",
+    "Tooltip": "Изменить доску"
   },
   "CreateBoard": {
     "BtnMain": "Создать доску",
@@ -59,6 +64,24 @@
     "InpTitle": "Заголовок",
     "InpDescr": "Описание",
     "Submit": "Создать"
+  },
+  "Board": {
+    "BtnBack": "Назад"
+  },
+  "ModalCreateColumn": {
+    "BtnCreate": "Создать колонку",
+    "Title": "Создать колонку",
+    "Input": "Заголовок",
+    "Submit": "Создать"
+  },
+  "ModalCreateTask": {
+    "BtnAdd": "Добавить задачу",
+    "Title": "Создать задачу",
+    "Description": "Заголовок задачи",
+    "Submit": "Добавить"
+  },
+  "Column": {
+    "title": "Заголовок:"
   },
   "WelcomePage": {
     "Title": "Добро пожаловать в приложение PMA",

@@ -1,9 +1,11 @@
+import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import s from './ModalCreateColumn.module.css';
 
@@ -25,6 +27,7 @@ const style = {
 };
 
 export default function ModalCreateColumn() {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,8 +50,8 @@ export default function ModalCreateColumn() {
 
   return (
     <div className={s.position}>
-      <Button sx={CreateUserBtnSXProps} onClick={handleOpen}>
-        Create Column
+      <Button variant='contained' sx={CreateUserBtnSXProps} onClick={handleOpen} startIcon={<ViewWeekIcon />}>
+        {t('ModalCreateColumn.BtnCreate')}
       </Button>
       <Modal
         open={open}
@@ -58,7 +61,7 @@ export default function ModalCreateColumn() {
       >
         <Box sx={style}>
           <form onSubmit={onPromiseHandler(handleSubmit(onSubmit))}>
-            <h3 className={s.form__title}>Create Board</h3>
+            <h3 className={s.form__title}>{t('ModalCreateColumn.Title')}</h3>
             <Controller
               name='title'
               control={control}
@@ -66,7 +69,7 @@ export default function ModalCreateColumn() {
               defaultValue=''
               render={({ field }) => (
                 <TextField
-                  label='Title'
+                  label={t('ModalCreateColumn.Input')}
                   size='small'
                   margin='normal'
                   fullWidth={true}
@@ -79,7 +82,7 @@ export default function ModalCreateColumn() {
             />
 
             <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
-              Create Column
+              {t('ModalCreateColumn.Submit')}
             </Button>
           </form>
         </Box>

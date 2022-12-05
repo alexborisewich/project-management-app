@@ -1,5 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -22,16 +22,18 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction='up' ref={ref} {...props} />;
 });
 
-const ConfirmationModal = ({ handleConfirm, text, id, btnAgr, btnDisAgr }: types.ConfirmationModalProps) => {
+const ConfirmationModal = ({ handleConfirm, text, id, btnAgr, btnDisAgr, tooltip }: types.ConfirmationModalProps) => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
   return (
     <>
-      <IconButton color='primary' aria-label='delete profile' onClick={handleOpen}>
-        <DeleteIcon />
-      </IconButton>
+      <Tooltip title={t(tooltip)}>
+        <IconButton color='primary' aria-label='delete profile' onClick={handleOpen}>
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
       <Dialog
         open={openModal}
         TransitionComponent={Transition}

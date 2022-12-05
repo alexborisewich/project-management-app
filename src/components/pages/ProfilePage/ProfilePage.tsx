@@ -117,6 +117,7 @@ const ProfilePage = ({ dataTestId }: types.ProfilePageProps) => {
               id={userId}
               btnAgr='Buttons.BtnAgr'
               btnDisAgr='Buttons.BtnDisagr'
+              tooltip='ConfirmModal.TooltipProfile'
               handleConfirm={handleConfirm}
             />
           </div>
