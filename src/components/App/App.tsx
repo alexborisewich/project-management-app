@@ -20,8 +20,8 @@ import { useAppSelector } from 'hooks';
 const App = () => {
   const { user } = useAppSelector((state) => state.app);
   return (
-    <ErrorBoundary>
-      <BrowserRouter basename={PATHS.base}>
+    <BrowserRouter basename={PATHS.base}>
+      <ErrorBoundary>
         <Routes>
           <Route element={<Layout />}>
             <Route path={PATHS.welcome} element={<WelcomePage />} />
@@ -38,8 +38,8 @@ const App = () => {
           </Route>
           <Route path={PATHS.notFound} element={<NotFoundPage />} />
         </Routes>
-      </BrowserRouter>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </BrowserRouter>
   );
 };
 

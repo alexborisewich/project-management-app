@@ -50,7 +50,7 @@
   "UpdateBoard": {
     "Title": "Edit Board",
     "InpTitle": "Title",
-    "InpDescr":"Description",
+    "InpDescr": "Description",
     "Submit": "Edit"
   },
   "CreateBoard": {
@@ -89,5 +89,15 @@
         "feat2": "Board route"
       }
     }
+  },
+  "ErrorPage": {
+    "Title": "Error",
+    "Text": "Oops... Something went wrong.",
+    "Link": "Go to Main"
+  },
+  "NotFoundPage": {
+    "Title": "404",
+    "Text": "Oops... Page not found.",
+    "Link": "Go to Main"
   }
 }
