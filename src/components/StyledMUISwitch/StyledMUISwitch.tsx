@@ -20,8 +20,8 @@ const StyledMUISwitch = styled(Switch)(({ theme }) => {
         transform: 'translateX(26px)',
         '& .MuiSwitch-thumb:before': {
           content: `'${t('Header.LanguageSwitcher.En')}'`,
-          paddingTop: 9,
-          paddingLeft: 10,
+          paddingTop: 10,
+          paddingLeft: 11,
         },
         '& + .MuiSwitch-track': {
           opacity: 1,
@@ -39,8 +39,8 @@ const StyledMUISwitch = styled(Switch)(({ theme }) => {
         position: 'absolute',
         width: '100%',
         height: '100%',
-        paddingTop: 9,
-        paddingLeft: 10,
+        paddingTop: 10,
+        paddingLeft: 8,
         left: 0,
         top: 0,
       },
