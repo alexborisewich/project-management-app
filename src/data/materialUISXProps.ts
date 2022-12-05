@@ -33,3 +33,17 @@ export const CreateUserModalBtnSXProps = {
   backgroundColor: '#5352ED',
   textTransform: 'none',
 };
+export const CreateTaskModalBtnSXProps = {
+  borderRadius: '5px',
+  color: 'white',
+  width: '30px',
+  backgroundColor: '#5352ED',
+  textTransform: 'none',
+};
+export const CreateBackBtnSXProps = {
+  borderRadius: '5px',
+  color: 'white',
+  width: '30px',
+  backgroundColor: '#5352ED',
+  textTransform: 'none',
+};

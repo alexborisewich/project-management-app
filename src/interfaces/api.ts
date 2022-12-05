@@ -43,6 +43,7 @@ export interface INewColumn {
 }
 
 export interface IColumn extends INewColumn {
+  _id: string;
   id: string;
   boardId: string;
 }
@@ -52,8 +53,9 @@ export interface INewSetColumns extends INewColumn {
 }
 
 export interface IUpdateSetColumns {
-  id: string;
+  id?: string;
   order: number;
+  _id?: string;
 }
 
 // tasks
@@ -76,9 +78,10 @@ export interface IUpdateTask extends INewTask {
 }
 
 export interface IUpdateSetTasks {
-  id: string;
+  id?: string;
   order: number;
   columnId: string;
+  _id?: string;
 }
 
 // files
@@ -130,4 +133,13 @@ export interface IAPIError {
 }
 export interface Props<T> {
   boardId: T;
+}
+export interface IChangableTask {
+  _id: string;
+  title: string;
+  order: number;
+  description?: string;
+  userId?: string;
+  users?: string[];
+  columnId?: string;
 }

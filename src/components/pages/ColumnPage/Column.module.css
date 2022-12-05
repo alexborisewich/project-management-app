@@ -1,0 +1,11 @@
+.container{
+  margin: 8px;
+  border: 1px solid lightblue;
+  border-radius: 2px;
+}
+.title{
+  padding: 8px;
+}
+.task_list{
+  padding: 8px;
+}

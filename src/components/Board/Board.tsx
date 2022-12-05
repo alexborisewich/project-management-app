@@ -12,9 +12,9 @@ import ModalCreateBoard from 'components/pages/ModalCreateBoardPage/ModalCreateB
 import ModalDeleteBoard from 'components/pages/ModalDeleteBoardPage/ModalDeleteBoard';
 import ModalUpdateInfo from 'components/pages/ModalUpdateBoardPage/ModalUpdateBoard';
 import { PATHS } from 'data';
-import { useAppDispatch, useGetBoardsByUserIdQuery } from 'hooks';
-import { setBoardId } from 'store/appSlice';
+import { useGetBoardsByUserIdQuery } from 'hooks';
 import { RootState } from 'store/store';
+import { saveBoardId } from 'utils';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -24,7 +24,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Board = function ({ dataTestId }: types.BoardProps) {
-  const dispatch = useAppDispatch();
   const userIdChoise = useSelector((state: RootState) => state.app.user?.id);
   const userId = userIdChoise === undefined ? '' : userIdChoise;
   const { data } = useGetBoardsByUserIdQuery(userId);
@@ -34,16 +33,16 @@ const Board = function ({ dataTestId }: types.BoardProps) {
         <ModalCreateBoard />
         <Grid container spacing={2}>
           {data?.map((item) => (
-            <Grid item xs={4}>
+            <Grid key={item._id} item xs={4}>
               <Item>
                 {' '}
-                <div key={item._id}>
+                <div>
                   <ModalUpdateInfo boardId={item._id} title={item.title} users={item.users} />
                   <ModalDeleteBoard boardId={item._id} />
                   <Link to={PATHS.board}>
                     <div
                       onClick={() => {
-                        dispatch(setBoardId(item._id));
+                        saveBoardId(item._id);
                       }}
                       className={s.board_size}
                     >

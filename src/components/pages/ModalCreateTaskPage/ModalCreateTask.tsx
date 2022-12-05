@@ -5,11 +5,11 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-import s from './ModalCreateColumn.module.css';
+import s from './ModalCreateTask.module.css';
 
-import { CreateUserBtnSXProps } from 'data';
-import { useCreateColumnMutation } from 'hooks/api';
-import { INewColumn } from 'interfaces';
+import { CreateTaskModalBtnSXProps } from 'data';
+import { useCreateTaskMutation } from 'hooks/api';
+import { INewTask } from 'interfaces';
 import { titleValidation, onPromiseHandler, getBoardId } from 'utils';
 
 const style = {
@@ -24,31 +24,39 @@ const style = {
   p: 4,
 };
 
-export default function ModalCreateColumn() {
+export default function ModalCreateTask(props: { column: string }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [createColumn] = useCreateColumnMutation();
+  const [createTask] = useCreateTaskMutation();
   const boardId = getBoardId();
   const {
     control,
     reset,
     formState: { errors },
     handleSubmit,
-  } = useForm<INewColumn>();
-  const onSubmit = async (NewColumnData: INewColumn) => {
-    await createColumn({
-      body: { title: NewColumnData.title, order: 1 },
+  } = useForm<INewTask>();
+  const onSubmit = async (NewTaskData: INewTask) => {
+    await createTask({
+      body: {
+        title: NewTaskData.title,
+        order: 0,
+        description: 'string',
+        userId: '0',
+        users: ['string'],
+      },
       boardId: boardId,
+      columnId: props.column,
     });
+
     handleClose();
     reset();
   };
 
   return (
     <div className={s.position}>
-      <Button sx={CreateUserBtnSXProps} onClick={handleOpen}>
-        Create Column
+      <Button sx={CreateTaskModalBtnSXProps} onClick={handleOpen}>
+        Create
       </Button>
       <Modal
         open={open}
@@ -58,7 +66,7 @@ export default function ModalCreateColumn() {
       >
         <Box sx={style}>
           <form onSubmit={onPromiseHandler(handleSubmit(onSubmit))}>
-            <h3 className={s.form__title}>Create Board</h3>
+            <h3 className={s.form__title}>Create Task</h3>
             <Controller
               name='title'
               control={control}
@@ -79,7 +87,7 @@ export default function ModalCreateColumn() {
             />
 
             <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
-              Create Column
+              Create Task
             </Button>
           </form>
         </Box>
