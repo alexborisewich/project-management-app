@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useMediaQuery } from 'react-responsive';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { s, types } from './';
@@ -17,6 +18,7 @@ import { PATHS, signInBtnSXProps, SignUpBtnSXProps } from 'data';
 import { useAppSelector } from 'hooks';
 
 const Header = ({ dataTestId }: types.HeaderProps) => {
+  const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,22 +53,47 @@ const Header = ({ dataTestId }: types.HeaderProps) => {
           </>
         ) : (
           <>
-            <Button
-              variant='contained'
-              startIcon={<LoginIcon />}
-              sx={signInBtnSXProps}
-              onClick={() => navigate(PATHS.signIn)}
-            >
-              {t('Buttons.BtnSignIn')}
-            </Button>
-            <Button
-              variant='outlined'
-              startIcon={<AppRegistrationIcon />}
-              sx={SignUpBtnSXProps}
-              onClick={() => navigate(PATHS.signUp)}
-            >
-              {t('Buttons.BtnSignUp')}
-            </Button>
+            {!isMobile ? (
+              <>
+                <Button
+                  variant='contained'
+                  startIcon={<LoginIcon />}
+                  sx={signInBtnSXProps}
+                  onClick={() => navigate(PATHS.signIn)}
+                >
+                  {t('Buttons.BtnSignIn')}
+                </Button>
+                <Button
+                  variant='outlined'
+                  startIcon={<AppRegistrationIcon />}
+                  sx={SignUpBtnSXProps}
+                  onClick={() => navigate(PATHS.signUp)}
+                >
+                  {t('Buttons.BtnSignUp')}
+                </Button>
+              </>
+            ) : (
+              <>
+                <Tooltip title={t('Buttons.BtnSignIn')}>
+                  <IconButton
+                    sx={{ color: '#5352ED', padding: '2px' }}
+                    aria-label='go to main'
+                    onClick={() => navigate(PATHS.signIn)}
+                  >
+                    <LoginIcon fontSize='large' />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t('Buttons.BtnSignUp')}>
+                  <IconButton
+                    sx={{ color: '#5352ED', padding: '2px' }}
+                    aria-label='go to main'
+                    onClick={() => navigate(PATHS.signUp)}
+                  >
+                    <AppRegistrationIcon fontSize='large' />
+                  </IconButton>
+                </Tooltip>
+              </>
+            )}
           </>
         )}
         <StyledMUISwitch
