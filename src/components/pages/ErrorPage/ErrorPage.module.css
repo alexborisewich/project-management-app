@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  color: #eff0f3;
+
+  background: linear-gradient(126.96deg, #56b8ef 7.02%, #5352ed 100.84%);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  height: 50%;
+}
+
+.title {
+  font-size: 70px;
+  color: inherit;
+  text-align: center;
+}
+
+.text {
+  font-size: 40px;
+  color: inherit;
+  text-align: center;
+}
+
+.link {
+  font-size: 30px;
+  color: inherit;
+  text-align: center;
+  text-decoration: underline;
+}

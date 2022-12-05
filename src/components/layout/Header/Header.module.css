@@ -1,0 +1,50 @@
+.container {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem;
+
+    background: linear-gradient(126.96deg, #fff 7.02%, #EFF0F3 100.84%);
+}
+
+.logo {
+    cursor: default;
+
+    font-family: Pocifico, sans-serif !important;;
+    font-size: 2.1rem;
+}
+
+.wrapper__btns {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    box-sizing: border-box;
+    width: 4rem;
+    height: 2rem;
+
+    text-align: center;
+
+    background-color: rgb(125 211 252);
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.25rem 0.25rem rgb(3 105 161 / 20%);
+}
+
+.btn:hover  {
+    background-color: rgb(3 105 161);
+    box-shadow: 0.5rem 0.25rem 0.25rem rgb(3 105 161 / 50%);
+}
+
+.btn:active  {
+    transform: translateY(0.3rem) translateX(0.3rem);
+
+    background-color: rgb(3 105 161);
+    box-shadow: none;
+}

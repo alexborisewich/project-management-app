@@ -1,0 +1,126 @@
+{
+  "Header": {
+    "LanguageSwitcher": {
+      "En": "En",
+      "Ru": "Ru"
+    }
+  },
+  "SignIn": {
+    "Title": "Sign In",
+    "InpLogin": "Login",
+    "InpPass": "Password",
+    "SignUpLink": "Don`t have an account? Sign up"
+  },
+  "SignUp": {
+    "Title": "Sign Up",
+    "InpName": "Name",
+    "InpLogin": "Login",
+    "InpPass": "Password",
+    "SignInLink": "Already have an account? Sign in"
+  },
+  "Profile": {
+    "Title": "Edit your profile",
+    "InpName": "Name",
+    "InpLogin": "Login",
+    "InpPass": "New password"
+  },
+  "Buttons": {
+    "BtnMain": "Go to Main Page",
+    "BtnEditProfile": "Profile",
+    "BtnSignOut": "Sign Out",
+    "BtnSignIn": "Sign In",
+    "BtnSignUp": "Sign Up",
+    "BtnSubmit": "Submit",
+    "BtnAgr": "Agree",
+    "BtnDisagr": "Disagree"
+  },
+  "Messages": {
+    "Toast": {
+      "SuccessSignIn": "Successfully signed in!",
+      "SuccessSignUp": "Successfully signed up!",
+      "SuccessUpdProfile": "Your profile has been updated!",
+      "SuccessDelProfile": "Your profile has been deleted!"
+    }
+  },
+  "ConfirmModal": {
+    "Title": "Please, confirm",
+    "DelProfileQuestion": "Are you sure want to delete your profile?",
+    "DelBoardQuestion": "Are you sure want to delete this board?",
+    "DelColumnQuestion": "Are you sure want to delete this column?",
+    "TooltipProfile": "Delete profile",
+    "TooltipBoard": "Delete board",
+    "TooltipColumn": "Delete column"
+  },
+  "UpdateBoard": {
+    "Title": "Edit Board",
+    "InpTitle": "Title",
+    "InpDescr":"Description",
+    "Submit": "Edit",
+    "Tooltip": "Edit board"
+  },
+  "CreateBoard": {
+    "BtnMain": "Create Board",
+    "Title": "Create Board",
+    "InpTitle": "Title",
+    "InpDescr": "Description",
+    "Submit": "Create"
+  },
+  "Board": {
+    "BtnBack": "Back"
+  },
+  "ModalCreateColumn": {
+    "BtnCreate": "Create Column",
+    "Title": "Create Column",
+    "Input": "Title",
+    "Submit": "Create"
+  },
+  "ModalCreateTask": {
+    "BtnAdd": "Add task",
+    "Title": "Create Task",
+    "Description": "Title",
+    "Submit": "Add"
+  },
+  "Column": {
+    "title": "Title:"
+  },
+  "WelcomePage": {
+    "Title": "Welcome to Project manager application",
+    "Description": "PMA - is an application with a wide range of possibilities for creating and managing task-boards. It`s our final project on React 2022Q3 course, so we tried to create the most powerfull project management application using a lot of libraries that make development more convenient and laconic.",
+    "AboutUs": "About us",
+    "Creator1": {
+      "Name": "Aliaksei Barysewich",
+      "feat": {
+        "feat1": "Server deploy",
+        "feat2": "Routing",
+        "feat3": "React RTK Query",
+        "feat4": "Initial setup and debugging of the project"
+      }
+    },
+    "Creator2": {
+      "Name": "Ihar Pavetka",
+      "feat": {
+        "feat1": "Welcome page",
+        "feat2": "Header",
+        "feat3": "Footer",
+        "feat4": "Sign In / Sign Up"
+      }
+    },
+    "Creator3": {
+      "Name": "Aliaksandr Sakalouski",
+      "feat": {
+        "feat1": "Main route",
+        "feat2": "Board route"
+      }
+    }
+  },
+  "ErrorPage": {
+    "Title": "Error",
+    "Text": "Oops... Something went wrong.",
+    "Link": "Go to Main"
+  },
+  "NotFoundPage": {
+    "Title": "404",
+    "Text": "Oops... Page not found.",
+    "Link": "Go to Main"
+  }
+}

@@ -1,0 +1,22 @@
+.container{
+  margin: 8px;
+
+  border: 1px solid lightblue;
+  border-radius: 2px;
+}
+
+.title{
+  padding: 8px;
+
+  font-size: 20px;
+  color: #5352ED;
+  text-align: center;
+}
+
+.task_list{
+  padding: 8px;
+}
+
+.board__control {
+  display: flex;
+}

@@ -1,0 +1,11 @@
+{
+  "*.{js,ts,jsx,tsx}": [
+    "npm run fixcode --max-warnings=0"
+  ],
+  "*.{css, scss}": [
+    "npm run fixstyles --max-warnings=0"
+  ],
+  "*.{html, md, json}": [
+    "prettier --write"
+  ]
+}

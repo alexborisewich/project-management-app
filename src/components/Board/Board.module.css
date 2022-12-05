@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.5rem 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  row-gap: 1rem;
+  justify-content: center;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+
+  width: 18.5rem;
+  height: auto;
+  padding: 0.5rem;
+
+  border-radius: 0.625rem;
+  box-shadow: 0 7px 8px -4px rgb(0 0 0 / 20%), 0 12px 17px 2px rgb(0 0 0 / 14%), 0 5px 22px 4px rgb(0 0 0 / 12%);
+}
+
+.board__title {
+  padding: 0.5rem;
+
+  font-size: 20px;
+  color: #5352ED;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.board__descript {
+  overflow: hidden;
+
+  padding: 0.5rem;
+
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.board__control {
+  display: flex;
+}
