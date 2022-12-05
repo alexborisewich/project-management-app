@@ -50,6 +50,7 @@ const Board = function ({ dataTestId }: types.BoardProps) {
                 id={item._id}
                 btnAgr='Buttons.BtnAgr'
                 btnDisAgr='Buttons.BtnDisagr'
+                tooltip='ConfirmModal.TooltipBoard'
               />
             </div>
           </div>

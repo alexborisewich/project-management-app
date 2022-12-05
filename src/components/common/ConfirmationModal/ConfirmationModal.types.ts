@@ -4,6 +4,7 @@ export type ConfirmationModalProps = {
   text: string;
   btnAgr: string;
   btnDisAgr: string;
+  tooltip: string;
   dataTestId?: string;
 };
 

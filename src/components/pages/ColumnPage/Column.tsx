@@ -1,3 +1,4 @@
+import { Divider } from '@mui/material';
 import React, { useEffect } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
@@ -13,8 +14,10 @@ import { IChangableTask } from 'interfaces';
 import { getBoardId } from 'utils';
 const Container = styled.div`
   margin: 8px;
-  border: 1px solid lightblue;
-  border-radius: 2px;
+  padding: 1rem;
+  border-radius: 16px;
+  overflow-wrap: break-word;
+  box-shadow: 0 7px 8px -4px rgb(0 0 0 / 20%), 0 12px 17px 2px rgb(0 0 0 / 14%), 0 5px 22px 4px rgb(0 0 0 / 12%);
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -29,7 +32,7 @@ const Tasklist = styled.div`
 `;
 const TaskHeight = styled.div`
   max-height: 300px;
-  overflow: scroll;
+  flex-grow: 1;
 `;
 
 const Column = (props: {
@@ -74,7 +77,8 @@ const Column = (props: {
     <Draggable draggableId={props.column._id} index={props.index}>
       {(provided) => (
         <Container ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-          <Title>{props.column.title}</Title>
+          <Title className={s.title}>{props.column.title}</Title>
+          <Divider />
           <TaskHeight>
             <Droppable droppableId={props.column._id} type='task'>
               {(provided) => (
@@ -87,14 +91,16 @@ const Column = (props: {
               )}
             </Droppable>
           </TaskHeight>
+          <Divider />
           <div className={s.board__control}>
             <ModalCreateTask column={props.column._id} />
             <ConfirmationModal
               handleConfirm={handleConfirm}
-              text='ConfirmModal.DelBoardQuestion'
+              text='ConfirmModal.DelColumnQuestion'
               id={props.column._id}
               btnAgr='Buttons.BtnAgr'
               btnDisAgr='Buttons.BtnDisagr'
+              tooltip='ConfirmModal.TooltipColumn'
             />
           </div>
         </Container>

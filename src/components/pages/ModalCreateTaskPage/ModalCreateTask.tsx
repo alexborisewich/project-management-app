@@ -1,10 +1,11 @@
-import EditIcon from '@mui/icons-material/Edit';
-import { IconButton, TextField } from '@mui/material';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import { IconButton, TextField, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import s from './ModalCreateTask.module.css';
 
@@ -25,6 +26,7 @@ const style = {
 };
 
 export default function ModalCreateTask(props: { column: string }) {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -55,9 +57,11 @@ export default function ModalCreateTask(props: { column: string }) {
 
   return (
     <div className={s.position}>
-      <IconButton color='primary' aria-label='edit profile' onClick={handleOpen}>
-        <EditIcon />
-      </IconButton>
+      <Tooltip title={t('ModalCreateTask.BtnAdd')}>
+        <IconButton color='primary' aria-label='edit profile' onClick={handleOpen}>
+          <PlaylistAddIcon />
+        </IconButton>
+      </Tooltip>
       <Modal
         open={open}
         onClose={handleClose}
@@ -66,7 +70,7 @@ export default function ModalCreateTask(props: { column: string }) {
       >
         <Box sx={style}>
           <form onSubmit={onPromiseHandler(handleSubmit(onSubmit))}>
-            <h3 className={s.form__title}>Create Task</h3>
+            <h3 className={s.form__title}>{t('ModalCreateTask.Title')}</h3>
             <Controller
               name='title'
               control={control}
@@ -74,7 +78,7 @@ export default function ModalCreateTask(props: { column: string }) {
               defaultValue=''
               render={({ field }) => (
                 <TextField
-                  label='Title'
+                  label={t('ModalCreateTask.Description')}
                   size='small'
                   margin='normal'
                   fullWidth={true}
@@ -87,7 +91,7 @@ export default function ModalCreateTask(props: { column: string }) {
             />
 
             <Button variant='contained' type='submit' sx={{ marginTop: '30px' }}>
-              Create Task
+              {t('ModalCreateTask.Submit')}
             </Button>
           </form>
         </Box>
