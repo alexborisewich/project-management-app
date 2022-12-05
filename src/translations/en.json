@@ -59,5 +59,35 @@
     "InpTitle": "Title",
     "InpDescr": "Description",
     "Submit": "Create"
+  },
+  "WelcomePage": {
+    "Title": "Welcome to Project manager application",
+    "Description": "PMA - is an application with a wide range of possibilities for creating and managing task-boards. It`s our final project on React 2022Q3 course, so we tried to create the most powerfull project management application using a lot of libraries that make development more convenient and laconic.",
+    "AboutUs": "About us",
+    "Creator1": {
+      "Name": "Aliaksei Barysewich",
+      "feat": {
+        "feat1": "Server deploy",
+        "feat2": "Routing",
+        "feat3": "React RTK Query",
+        "feat4": "Initial setup and debugging of the project"
+      }
+    },
+    "Creator2": {
+      "Name": "Ihar Pavetka",
+      "feat": {
+        "feat1": "Welcome page",
+        "feat2": "Header",
+        "feat3": "Footer",
+        "feat4": "Sign In / Sign Up"
+      }
+    },
+    "Creator3": {
+      "Name": "Aliaksandr Sakalouski",
+      "feat": {
+        "feat1": "Main route",
+        "feat2": "Board route"
+      }
+    }
   }
 }
